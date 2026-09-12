@@ -1,643 +1,808 @@
-<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aynur Güzellik Salonu | İzmir Güzelyalı'da Uzman Dokunuş</title>
+    <title>Aynur Güzellik Salonu | İzmir Güzelyalı</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        nude: '#E8D5C4',
-                        rosenude: '#F4E8EB',
-                        gold: '#D4AF37',
-                        rosegold: '#E0A96D',
-                        dark: '#2B232A',
-                        light: '#FAFAFA',
+                        rose: {
+                            50: '#FDF8F9',
+                            100: '#F4E8EB',
+                            200: '#EDD5DA',
+                            300: '#E8D5C4',
+                            400: '#D4A99E',
+                        },
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            light: '#E0A96D',
+                            dark: '#B8962E',
+                        },
+                        anthracite: '#2B232A',
+                        cream: '#FAFAFA',
                     },
                     fontFamily: {
-                        serif: ['Cormorant Garamond', 'serif'],
+                        serif: ['Playfair Display', 'serif'],
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
-                    boxShadow: {
-                        'soft': '0 10px 40px -10px rgba(43,35,42,0.08)',
-                        'gold': '0 10px 30px -10px rgba(212,175,55,0.35)',
                     }
                 }
             }
         }
     </script>
     <style>
-        *{ -webkit-font-smoothing:antialiased; }
-        body{ font-family:'Plus Jakarta Sans',sans-serif; background:#FAFAFA; color:#2B232A; }
-        .font-serif{ font-family:'Cormorant Garamond',serif; }
-        .text-balance{ text-wrap:balance; }
-        .glass{ backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
-        .img-zoom{ transition: transform .7s cubic-bezier(.2,.8,.2,1); }
-        .group:hover .img-zoom{ transform: scale(1.06); }
-        ::-webkit-scrollbar{ width:8px; } ::-webkit-scrollbar-thumb{ background:#E8D5C4; border-radius:999px; }
+        * { scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(244,232,235,0.95) 0%, rgba(232,213,196,0.85) 50%, rgba(250,250,250,0.9) 100%);
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #E0A96D 50%, #D4AF37 100%);
+        }
+        
+        .gold-text {
+            background: linear-gradient(135deg, #D4AF37, #E0A96D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .instagram-gradient {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(43, 35, 42, 0.15);
+        }
+        
+        .btn-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        .btn-shimmer:hover::after {
+            transform: translateX(100%);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #D4AF37, #E0A96D);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-nav {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-nav.open {
+            transform: translateX(0);
+        }
+        
+        .overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .star-rating { color: #D4AF37; }
+        
+        .pulse-ring {
+            animation: pulseRing 2s ease-out infinite;
+        }
+        @keyframes pulseRing {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+        
+        .float-bar {
+            box-shadow: 0 -4px 30px rgba(43, 35, 42, 0.15);
+        }
+        
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #D4AF37, #E0A96D);
+            margin: 0 auto;
+        }
+        
+        .ig-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .ig-card .ig-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(43, 35, 42, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .ig-card:hover .ig-overlay {
+            opacity: 1;
+        }
+        
+        .whatsapp-float {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .hero-img {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-img {
+                clip-path: none;
+            }
+        }
     </style>
 </head>
-<body class="bg-light overflow-x-hidden selection:bg-rosenude selection:text-dark">
+<body class="bg-cream text-anthracite overflow-x-hidden">
 
-<!-- HEADER -->
-<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-light/80 glass border-b border-dark/5">
-    <div class="max-w-[1280px] mx-auto px-5 lg:px-8 h-[76px] flex items-center justify-between">
-        <a href="#" class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-dark text-rosenude flex items-center justify-center font-serif font-bold text-[18px] tracking-widest">A</div>
-            <div class="leading-[0.9]">
-                <div class="font-serif font-bold text-[20px] tracking-[0.12em] text-dark">AYNUR</div>
-                <div class="text-[10px] tracking-[0.28em] uppercase font-semibold text-dark/60 -mt-[2px]">Güzellik Salonu</div>
-            </div>
-        </a>
-
-        <nav class="hidden lg:flex items-center gap-8">
-            <a href="#hakkimizda" class="navlink text-[13.5px] tracking-wide font-medium text-dark/70 hover:text-dark transition">Hakkımızda</a>
-            <a href="#hizmetler" class="navlink text-[13.5px] tracking-wide font-medium text-dark/70 hover:text-dark transition">Hizmetler</a>
-            <a href="#instagram" class="navlink text-[13.5px] tracking-wide font-medium text-dark/70 hover:text-dark transition">Instagram</a>
-            <a href="#yorumlar" class="navlink text-[13.5px] tracking-wide font-medium text-dark/70 hover:text-dark transition">Müşteri Yorumları</a>
-            <a href="#iletisim" class="navlink text-[13.5px] tracking-wide font-medium text-dark/70 hover:text-dark transition">İletişim</a>
-        </nav>
-
-        <div class="hidden lg:flex items-center gap-3">
-            <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="h-10 w-10 rounded-full border border-dark/10 flex items-center justify-center hover:border-gold hover:text-gold transition">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-            </a>
-            <a href="https://wa.me/905325555566?text=Merhaba%20Aynur%20G%C3%BCzellik%20Salonu%2C%20randevu%20almak%20istiyorum." target="_blank" class="h-10 px-5 rounded-full bg-dark text-white text-[13px] font-semibold tracking-wide flex items-center gap-2 hover:bg-black transition shadow-soft">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.05 4.94A9.91 9.91 0 0 0 12.04 2C6.58 2 2.15 6.45 2.15 10.92c0 1.57.41 3.1 1.19 4.45L2 22l6.82-1.79a9.87 9.87 0 0 0 4.72 1.2h.01c5.46 0 9.89-4.45 9.89-9.92a9.84 9.84 0 0 0-2.89-6.97l-.6-.58ZM12.05 19.6h-.01a8.13 8.13 0 0 1-4.15-1.14l-.3-.18-4.05 1.06 1.08-3.95-.19-.31a8.1 8.1 0 0 1-1.25-4.16c0-4.5 3.66-8.16 8.17-8.16a8.08 8.08 0 0 1 5.76 2.39 8.05 8.05 0 0 1 2.38 5.74c0 4.5-3.66 8.16-8.16 8.16l.52.55ZM16.58 13.7c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.57.12-.17.25-.66.81-.81.97-.15.17-.3.19-.55.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.57-1.38-.78-1.89-.2-.49-.41-.42-.57-.43h-.49c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.6c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.14-1.19-.06-.11-.23-.17-.48-.29Z"/></svg>
-                WhatsApp Randevu
-            </a>
-        </div>
-
-        <button id="menuBtn" class="lg:hidden w-10 h-10 rounded-full bg-dark text-white flex items-center justify-center">
-            <svg id="menuIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="10" y1="17" x2="20" y2="17"/></svg>
-            <svg id="closeIcon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-        </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="lg:hidden hidden border-t border-dark/5 bg-light/95 glass">
-        <div class="px-5 py-6 flex flex-col gap-5">
-            <a href="#hakkimizda" class="mobileLink font-serif text-[22px]">Hakkımızda</a>
-            <a href="#hizmetler" class="mobileLink font-serif text-[22px]">Hizmetler</a>
-            <a href="#instagram" class="mobileLink font-serif text-[22px]">Instagram</a>
-            <a href="#yorumlar" class="mobileLink font-serif text-[22px]">Müşteri Yorumları</a>
-            <a href="#iletisim" class="mobileLink font-serif text-[22px]">İletişim</a>
-            <div class="grid grid-cols-2 gap-3 pt-4">
-                <a href="https://wa.me/905325555566?text=Merhaba%20Aynur%20G%C3%BCzellik%20Salonu" target="_blank" class="h-12 rounded-full bg-dark text-white flex items-center justify-center gap-2 text-sm font-semibold"><span>WhatsApp</span></a>
-                <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="h-12 rounded-full bg-gradient-to-br from-[#FEDA75] via-[#D62976] to-[#4F5BD5] text-white flex items-center justify-center gap-2 text-sm font-semibold">Instagram</a>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- HERO -->
-<section class="relative pt-[76px] overflow-hidden">
-    <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute -top-24 -right-24 w-[520px] h-[520px] bg-rosenude rounded-full blur-[1px] opacity-80"></div>
-        <div class="absolute top-[40%] -left-32 w-[420px] h-[420px] bg-nude/60 rounded-full blur-[1px]"></div>
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] h-[1px] bg-gradient-to-r from-transparent via-dark/10 to-transparent"></div>
-    </div>
-
-    <div class="max-w-[1280px] mx-auto px-5 lg:px-8 relative">
-        <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-8 items-center py-10 lg:py-[72px]">
-            <!-- Left -->
-            <div class="relative">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-dark/5 shadow-soft text-[11px] tracking-[0.12em] uppercase font-semibold">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Güzelyalı • Konak / İzmir • Bugün Açık 09:00 - 20:00
-                </div>
-
-                <h1 class="font-serif text-[38px] sm:text-[48px] lg:text-[64px] leading-[0.92] tracking-[-0.02em] mt-6 text-balance">
-                    İzmir Güzelyalı'da<br>
-                    <span class="font-light">Cildinize Ve</span><br>
-                    <span class="italic font-medium text-transparent bg-clip-text bg-gradient-to-r from-gold to-rosegold">Güzelliğinize</span><br>
-                    Uzman Dokunuş
-                </h1>
-
-                <p class="mt-6 text-[16px] lg:text-[18px] leading-[1.6] text-dark/65 max-w-[560px] text-balance">
-                    Profesyonel cilt bakımı, estetik çözümler, bölgesel incelme ve kişiye özel bakım uygulamalarımızla doğal ışıltınızı ortaya çıkarın.
-                </p>
-
-                <div class="mt-8 flex flex-wrap gap-3">
-                    <a href="https://wa.me/905325555566?text=Merhaba%20Aynur%20G%C3%BCzellik%20Salonu%2C%20h%C4%B1zl%C4%B1%20randevu%20almak%20istiyorum." target="_blank" class="group h-[54px] px-7 rounded-full bg-dark text-white flex items-center gap-3 text-[14px] font-semibold tracking-wide hover:bg-black transition shadow-gold">
-                        <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/15 transition">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.05 4.94A9.91 9.91 0 0 0 12.04 2C6.58 2 2.15 6.45 2.15 10.92c0 1.57.41 3.1 1.19 4.45L2 22l6.82-1.79a9.87 9.87 0 0 0 4.72 1.2h.01c5.46 0 9.89-4.45 9.89-9.92a9.84 9.84 0 0 0-2.89-6.97l-.6-.58ZM12.05 19.6h-.01a8.13 8.13 0 0 1-4.15-1.14l-.3-.18-4.05 1.06 1.08-3.95-.19-.31a8.1 8.1 0 0 1-1.25-4.16c0-4.5 3.66-8.16 8.17-8.16a8.08 8.08 0 0 1 5.76 2.39 8.05 8.05 0 0 1 2.38 5.74c0 4.5-3.66 8.16-8.16 8.16l.52.55ZM16.58 13.7c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.57.12-.17.25-.66.81-.81.97-.15.17-.3.19-.55.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.57-1.38-.78-1.89-.2-.49-.41-.42-.57-.43h-.49c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.6c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.14-1.19-.06-.11-.23-.17-.48-.29Z"/></svg>
-                        </span>
-                        Hızlı WhatsApp Randevu
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="opacity-60 group-hover:translate-x-0.5 transition"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-                    </a>
-
-                    <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="h-[54px] px-6 rounded-full bg-white border border-dark/10 flex items-center gap-2.5 text-[14px] font-semibold hover:border-dark/20 transition shadow-soft">
-                        <span class="w-8 h-8 rounded-full bg-gradient-to-br from-[#FEDA75] via-[#D62976] to-[#4F5BD5] flex items-center justify-center text-white">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4"/></svg>
-                        </span>
-                        Instagram Profil
-                    </a>
-
-                    <a href="https://www.google.com/maps/dir/?api=1&destination=Güzelyalı+60.+Sk.+No:55+Konak+İzmir" target="_blank" class="h-[54px] px-6 rounded-full bg-rosenude/70 border border-dark/5 flex items-center gap-2 text-[14px] font-medium hover:bg-rosenude transition">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-6-5.2-6-10a6 6 0 0 1 12 0c0 4.8-6 10-6 10Z"/><circle cx="12" cy="11" r="2"/></svg>
-                        Yol Tarifi Al
-                    </a>
-                </div>
-
-                <div class="mt-8 flex items-center gap-6">
-                    <div class="flex -space-x-3">
-                        <img src="https://i.pravatar.cc/100?img=5" class="w-9 h-9 rounded-full border-2 border-white object-cover" alt="">
-                        <img src="https://i.pravatar.cc/100?img=32" class="w-9 h-9 rounded-full border-2 border-white object-cover" alt="">
-                        <img src="https://i.pravatar.cc/100?img=26" class="w-9 h-9 rounded-full border-2 border-white object-cover" alt="">
-                        <div class="w-9 h-9 rounded-full border-2 border-white bg-dark text-white text-[10px] font-bold flex items-center justify-center">+500</div>
-                    </div>
-                    <div class="text-[13px] leading-[1.3]">
-                        <div class="flex items-center gap-1 text-gold">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg>
-                            <span class="ml-1 text-dark font-semibold">4.9/5</span>
-                        </div>
-                        <div class="text-dark/60 font-medium">Mutlu danışan • Aynı gün randevu • Ücretsiz cilt analizi</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Visual -->
-            <div class="relative lg:h-[620px]">
-                <div class="relative h-[460px] sm:h-[520px] lg:h-full rounded-[32px] overflow-hidden bg-white shadow-soft border border-dark/5">
-                    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed1350b?q=80&w=1000&auto=format&fit=crop" alt="Aynur Güzellik Salonu Cilt Bakımı" class="absolute inset-0 w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark/40 via-dark/5 to-transparent"></div>
-
-                    <!-- floating info -->
-                    <div class="absolute top-5 left-5 right-5 flex justify-between items-start">
-                        <div class="px-3 py-1.5 rounded-full bg-white/90 glass text-[11px] tracking-widest font-semibold uppercase">Hijyen • Steril • Güven</div>
-                        <div class="w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-soft">
-                            <span class="font-serif font-bold tracking-widest">A</span>
-                        </div>
-                    </div>
-
-                    <div class="absolute bottom-4 left-4 right-4">
-                        <div class="rounded-[20px] bg-white/92 glass p-4 flex items-center gap-4 shadow-soft">
-                            <div class="w-12 h-12 rounded-full bg-rosenude flex items-center justify-center">
-                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2B232A" stroke-width="1.5"><path d="M12 7a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.41M17.66 6.34l1.41-1.41"/></svg>
-                            </div>
-                            <div class="flex-1">
-                                <div class="text-[13px] font-semibold">Uzman Estetisyen Kadrosu</div>
-                                <div class="text-[12px] text-dark/60">Kişiye özel protokoller • Medikal cihazlar</div>
-                            </div>
-                            <div class="text-[11px] px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">Müsait</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- side badge -->
-                <div class="absolute -bottom-6 -left-6 lg:-left-10 hidden sm:flex rounded-[18px] bg-dark text-white p-4 gap-3 shadow-xl rotate-[-2deg]">
-                    <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+    <!-- NAVBAR -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-lg border-b border-rose-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center">
+                        <span class="text-white font-serif font-bold text-lg">A</span>
                     </div>
                     <div>
-                        <div class="text-[12px] tracking-widest uppercase opacity-60">Google Yorum</div>
-                        <div class="font-serif text-[18px] leading-none mt-1">“Harika ilgi, tertemiz salon”</div>
+                        <span class="font-serif text-lg md:text-xl font-bold text-anthracite">Aynur</span>
+                        <span class="hidden sm:inline text-xs text-gold-dark ml-1 font-medium">Güzellik Salonu</span>
                     </div>
-                </div>
-
-                <div class="absolute -top-4 -right-4 w-20 h-20 rounded-full border border-gold/30 hidden lg:flex items-center justify-center">
-                    <div class="w-14 h-14 rounded-full bg-gradient-to-br from-gold to-rosegold text-white flex items-center justify-center font-serif text-xl">★</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- HAKKIMIZDA -->
-<section id="hakkimizda" class="relative py-16 lg:py-24 border-t border-dark/5 bg-white">
-    <div class="max-w-[1280px] mx-auto px-5 lg:px-8">
-        <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-16 items-start">
-            <div class="relative">
-                <div class="font-serif text-[42px] lg:text-[56px] leading-[0.95] tracking-[-0.02em]">
-                    Steril,<br>
-                    <span class="italic font-light">ferah ve</span><br>
-                    güven veren<br>
-                    lüks atmosfer
-                </div>
-                <p class="mt-6 text-[15px] leading-[1.7] text-dark/65">
-                    Aynur Güzellik Salonu olarak Güzelyalı'da hijyen standartlarımız, uzman estetisyen yaklaşımımız ve modern ekipman parkurumuzla hizmet veriyoruz. Her danışanımıza özel analiz ve protokol oluşturuyor, memnuniyeti şansa bırakmıyoruz.
-                </p>
-
-                <div class="mt-8 rounded-[24px] overflow-hidden border border-dark/5 bg-rosenude/30 p-1.5">
-                    <div class="rounded-[18px] overflow-hidden aspect-[4/3] relative bg-white">
-                        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1000&auto=format&fit=crop" alt="Salon" class="w-full h-full object-cover">
-                        <div class="absolute bottom-3 left-3 px-3 py-1.5 rounded-full bg-dark text-white text-[11px] tracking-wide font-semibold">Güzelyalı, 60. Sk. No:55 • Gerçek Salon Görünümü</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid sm:grid-cols-2 gap-4">
-                <div class="rounded-[20px] bg-light border border-dark/5 p-6 hover:shadow-soft transition group">
-                    <div class="w-12 h-12 rounded-full bg-white border border-dark/5 flex items-center justify-center group-hover:border-gold/30 transition">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    </div>
-                    <h3 class="mt-4 font-serif text-[20px] leading-[1.1]">Uzman Estetisyen Kadrosu</h3>
-                    <p class="mt-2 text-[13.5px] leading-[1.6] text-dark/60">Alanında sertifikalı, deneyimli ve güler yüzlü ekip. Her işlem öncesi detaylı cilt analizi.</p>
-                </div>
-                <div class="rounded-[20px] bg-dark text-white p-6 shadow-soft group">
-                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="M9 12l2 2 4-4"/></svg>
-                    </div>
-                    <h3 class="mt-4 font-serif text-[20px] leading-[1.1]">%100 Steril & Hijyenik Salon</h3>
-                    <p class="mt-2 text-[13.5px] leading-[1.6] text-white/70">Tek kullanımlık sarf malzemeler, medikal sterilizasyon, ferah ve temiz ortam.</p>
-                </div>
-                <div class="rounded-[20px] bg-rosenude/60 border border-dark/5 p-6">
-                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg>
-                    </div>
-                    <h3 class="mt-4 font-serif text-[20px] leading-[1.1]">Yüksek Müşteri Memnuniyeti</h3>
-                    <p class="mt-2 text-[13.5px] leading-[1.6] text-dark/60">Google'da 4.9/5 ortalama ile danışanlarımızın güvenini kazanmış hizmet.</p>
-                </div>
-                <div class="rounded-[20px] bg-white border border-dark/5 p-6 hover:shadow-soft transition">
-                    <div class="w-12 h-12 rounded-full bg-nude/50 flex items-center justify-center">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-                    </div>
-                    <h3 class="mt-4 font-serif text-[20px] leading-[1.1]">Kişiye Özel Bakım Protokolleri</h3>
-                    <p class="mt-2 text-[13.5px] leading-[1.6] text-dark/60">Cilt tipinize ve ihtiyacınıza göre planlanan, sonuç odaklı bakım programları.</p>
-                </div>
-
-                <div class="sm:col-span-2 mt-2 rounded-[16px] bg-dark/[0.03] border border-dashed border-dark/15 p-4 flex items-center justify-between gap-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-white border border-dark/5 flex items-center justify-center text-gold">✦</div>
-                        <div class="text-[13px] leading-[1.4]"><span class="font-semibold">Ücretsiz Cilt Analizi</span><br><span class="text-dark/60">Randevu sırasında cilt tipinize özel öneri</span></div>
-                    </div>
-                    <a href="https://wa.me/905325555566" target="_blank" class="shrink-0 h-9 px-4 rounded-full bg-white border border-dark/10 text-[12px] font-semibold hover:border-dark/20 transition">Hemen Sor</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- HIZMETLER -->
-<section id="hizmetler" class="relative py-16 lg:py-24 bg-[#F8F2EF]">
-    <div class="max-w-[1280px] mx-auto px-5 lg:px-8">
-        <div class="flex flex-wrap items-end justify-between gap-6">
-            <div>
-                <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase font-bold text-gold">Hizmetlerimiz</div>
-                <h2 class="mt-3 font-serif text-[36px] lg:text-[52px] leading-[0.95]">Doğal ışıltınızı<br><span class="italic font-light">ortaya çıkarın</span></h2>
-            </div>
-            <p class="max-w-[420px] text-[14px] leading-[1.7] text-dark/60">Medikal teknoloji ve uzman dokunuşla planlanan 3 ana kategoride profesyonel uygulamalar.</p>
-        </div>
-
-        <div class="mt-10 grid lg:grid-cols-3 gap-6">
-            <!-- Card 1 -->
-            <div class="group rounded-[28px] bg-white border border-dark/5 overflow-hidden shadow-soft hover:shadow-[0_20px_60px_-20px_rgba(43,35,42,0.18)] transition-all duration-500">
-                <div class="relative h-[260px] overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed1350b?q=80&w=800&auto=format&fit=crop" alt="Profesyonel Cilt Bakımı" class="img-zoom w-full h-full object-cover">
-                    <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 glass text-[11px] font-semibold tracking-wide">En Çok Tercih Edilen</div>
-                    <div class="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-black/40 to-transparent"></div>
-                </div>
-                <div class="p-7">
-                    <div class="w-10 h-10 rounded-full bg-rosenude flex items-center justify-center mb-4">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 7a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="M9 12h6"/></svg>
-                    </div>
-                    <h3 class="font-serif text-[24px] leading-[1.1]">Profesyonel & Medikal Cilt Bakımı</h3>
-                    <p class="mt-3 text-[13.5px] leading-[1.6] text-dark/60">Derinlemesine cilt temizliği, nem ve leke bakımları, anti-aging yenileme protokolleri.</p>
-                    <ul class="mt-4 space-y-2 text-[13px]">
-                        <li class="flex gap-2"><span class="text-gold">•</span> Hydrafacial • Leke Protokolü • Anti-Aging</li>
-                        <li class="flex gap-2"><span class="text-gold">•</span> Kişiye özel serum & maske kombinasyonu</li>
-                    </ul>
-                    <a href="https://wa.me/905325555566?text=Merhaba%2C%20Profesyonel%20Cilt%20Bak%C4%B1m%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" class="mt-6 h-11 w-full rounded-full bg-dark text-white flex items-center justify-center gap-2 text-[13px] font-semibold hover:bg-black transition">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.05 4.94A9.91 9.91 0 0 0 12.04 2C6.58 2 2.15 6.45 2.15 10.92c0 1.57.41 3.1 1.19 4.45L2 22l6.82-1.79a9.87 9.87 0 0 0 4.72 1.2h.01c5.46 0 9.89-4.45 9.89-9.92a9.84 9.84 0 0 0-2.89-6.97l-.6-.58ZM12.05 19.6h-.01a8.13 8.13 0 0 1-4.15-1.14l-.3-.18-4.05 1.06 1.08-3.95-.19-.31a8.1 8.1 0 0 1-1.25-4.16c0-4.5 3.66-8.16 8.17-8.16a8.08 8.08 0 0 1 5.76 2.39 8.05 8.05 0 0 1 2.38 5.74c0 4.5-3.66 8.16-8.16 8.16l.52.55ZM16.58 13.7c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.57.12-.17.25-.66.81-.81.97-.15.17-.3.19-.55.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.57-1.38-.78-1.89-.2-.49-.41-.42-.57-.43h-.49c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.6c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.14-1.19-.06-.11-.23-.17-.48-.29Z"/></svg>
-                        WhatsApp ile Detaylı Bilgi Al
+                </a>
+                
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="#hakkimizda" class="nav-link text-sm font-medium text-anthracite/80 hover:text-anthracite transition">Hakkımızda</a>
+                    <a href="#hizmetler" class="nav-link text-sm font-medium text-anthracite/80 hover:text-anthracite transition">Hizmetler</a>
+                    <a href="#instagram" class="nav-link text-sm font-medium text-anthracite/80 hover:text-anthracite transition">Instagram</a>
+                    <a href="#yorumlar" class="nav-link text-sm font-medium text-anthracite/80 hover:text-anthracite transition">Müşteri Yorumları</a>
+                    <a href="#iletisim" class="nav-link text-sm font-medium text-anthracite/80 hover:text-anthracite transition">İletişim</a>
+                </nav>
+                
+                <!-- CTA Buttons -->
+                <div class="hidden md:flex items-center gap-3">
+                    <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="flex items-center gap-2 px-4 py-2 rounded-full border border-rose-200 text-anthracite/80 hover:border-gold hover:text-gold-dark transition text-sm font-medium">
+                        <i class="fab fa-instagram text-lg"></i>
+                        <span class="hidden xl:inline">Instagram</span>
+                    </a>
+                    <a href="https://wa.me/905300000000?text=Merhaba,%20randevu%20almak%20istiyorum." target="_blank" class="btn-shimmer gold-gradient text-white px-5 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 hover:shadow-lg hover:shadow-gold/30 transition-all">
+                        <i class="fab fa-whatsapp text-lg"></i>
+                        <span>WhatsApp Randevu</span>
                     </a>
                 </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-rose-50 transition" aria-label="Menü">
+                    <i class="fas fa-bars text-xl text-anthracite"></i>
+                </button>
             </div>
+        </div>
+    </header>
 
-            <!-- Card 2 -->
-            <div class="group rounded-[28px] bg-white border border-dark/5 overflow-hidden shadow-soft hover:shadow-[0_20px_60px_-20px_rgba(43,35,42,0.18)] transition-all duration-500">
-                <div class="relative h-[260px] overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=800&auto=format&fit=crop" alt="Epilasyon" class="img-zoom w-full h-full object-cover">
-                    <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-dark text-white text-[11px] font-semibold tracking-wide">Son Teknoloji Cihazlar</div>
-                </div>
-                <div class="p-7">
-                    <div class="w-10 h-10 rounded-full bg-nude/60 flex items-center justify-center mb-4">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
-                    </div>
-                    <h3 class="font-serif text-[24px] leading-[1.1]">Epilasyon & Bölgesel İncelme</h3>
-                    <p class="mt-3 text-[13.5px] leading-[1.6] text-dark/60">Konforlu, son teknoloji cihazlarla epilasyon ve vücut şekillendirme çözümleri.</p>
-                    <ul class="mt-4 space-y-2 text-[13px]">
-                        <li class="flex gap-2"><span class="text-gold">•</span> Buz Başlıklı Konforlu Epilasyon</li>
-                        <li class="flex gap-2"><span class="text-gold">•</span> G5, Lenf Drenaj, Sıkılaşma Protokolleri</li>
-                    </ul>
-                    <a href="https://wa.me/905325555566?text=Merhaba%2C%20Epilasyon%20ve%20B%C3%B6lgesel%20%C4%B0ncelme%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" class="mt-6 h-11 w-full rounded-full bg-white border border-dark/10 flex items-center justify-center gap-2 text-[13px] font-semibold hover:border-dark/20 transition">
-                        WhatsApp ile Detaylı Bilgi Al
-                    </a>
-                </div>
+    <!-- Mobile Nav Overlay -->
+    <div id="overlay" class="overlay fixed inset-0 bg-anthracite/50 z-50"></div>
+    
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="mobile-nav fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white z-50 shadow-2xl">
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-8">
+                <span class="font-serif text-xl font-bold text-anthracite">Aynur Güzellik</span>
+                <button id="closeMenu" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-rose-50 transition">
+                    <i class="fas fa-times text-xl text-anthracite"></i>
+                </button>
             </div>
-
-            <!-- Card 3 -->
-            <div class="group rounded-[28px] bg-white border border-dark/5 overflow-hidden shadow-soft hover:shadow-[0_20px_60px_-20px_rgba(43,35,42,0.18)] transition-all duration-500">
-                <div class="relative h-[260px] overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=800&auto=format&fit=crop" alt="Kaş Kirpik" class="img-zoom w-full h-full object-cover">
-                    <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-rosenude text-dark text-[11px] font-semibold tracking-wide">Doğal Görünüm</div>
-                </div>
-                <div class="p-7">
-                    <div class="w-10 h-10 rounded-full bg-dark text-white flex items-center justify-center mb-4">✦</div>
-                    <h3 class="font-serif text-[24px] leading-[1.1]">Kaş, Kirpik & Kalıcı Makyaj</h3>
-                    <p class="mt-3 text-[13.5px] leading-[1.6] text-dark/60">İpek kirpik, kaş laminasyonu ve doğal dudak renklendirme uygulamaları.</p>
-                    <ul class="mt-4 space-y-2 text-[13px]">
-                        <li class="flex gap-2"><span class="text-gold">•</span> İpek Kirpik • Kaş Laminasyon • Microblading</li>
-                        <li class="flex gap-2"><span class="text-gold">•</span> Doğal dudak renklendirme</li>
-                    </ul>
-                    <a href="https://wa.me/905325555566?text=Merhaba%2C%20Ka%C5%9F%20Kirpik%20ve%20Kal%C4%B1c%C4%B1%20Makyaj%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" class="mt-6 h-11 w-full rounded-full bg-white border border-dark/10 flex items-center justify-center gap-2 text-[13px] font-semibold hover:border-dark/20 transition">
-                        WhatsApp ile Detaylı Bilgi Al
-                    </a>
-                </div>
+            <nav class="flex flex-col gap-1">
+                <a href="#hakkimizda" class="mobile-link py-3 px-4 rounded-lg hover:bg-rose-50 text-anthracite font-medium transition">Hakkımızda</a>
+                <a href="#hizmetler" class="mobile-link py-3 px-4 rounded-lg hover:bg-rose-50 text-anthracite font-medium transition">Hizmetler</a>
+                <a href="#instagram" class="mobile-link py-3 px-4 rounded-lg hover:bg-rose-50 text-anthracite font-medium transition">Instagram</a>
+                <a href="#yorumlar" class="mobile-link py-3 px-4 rounded-lg hover:bg-rose-50 text-anthracite font-medium transition">Müşteri Yorumları</a>
+                <a href="#iletisim" class="mobile-link py-3 px-4 rounded-lg hover:bg-rose-50 text-anthracite font-medium transition">İletişim</a>
+            </nav>
+            <div class="mt-8 flex flex-col gap-3">
+                <a href="https://wa.me/905300000000?text=Merhaba,%20randevu%20almak%20istiyorum." target="_blank" class="gold-gradient text-white py-3 rounded-full text-center font-semibold flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-xl"></i> WhatsApp Randevu
+                </a>
+                <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="instagram-gradient text-white py-3 rounded-full text-center font-semibold flex items-center justify-center gap-2">
+                    <i class="fab fa-instagram text-xl"></i> Instagram
+                </a>
             </div>
         </div>
     </div>
-</section>
 
-<!-- INSTAGRAM -->
-<section id="instagram" class="py-16 lg:py-24 bg-white relative overflow-hidden">
-    <div class="max-w-[1280px] mx-auto px-5 lg:px-8">
-        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-[#FEDA75]/20 via-[#D62976]/15 to-[#4F5BD5]/20 border border-dark/5 text-[11px] tracking-widest font-bold uppercase">
-                    <span class="w-2 h-2 rounded-full bg-[#D62976]"></span> Canlı • @aynurguzelliksalonu
-                </div>
-                <h2 class="mt-4 font-serif text-[34px] lg:text-[48px] leading-[0.95]">Uygulamalarımızı<br><span class="italic">Instagram'da Keşfedin</span></h2>
-                <p class="mt-3 text-[14px] leading-[1.6] text-dark/60 max-w-[480px]">@aynurguzelliksalonu hesabımızı takip ederek en güncel salon ortamımızı ve değişimleri inceleyebilirsiniz.</p>
-            </div>
-            <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="hidden lg:inline-flex h-12 px-6 rounded-full bg-dark text-white items-center gap-2 text-[13px] font-semibold hover:bg-black transition">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-                Instagram'da Takip Et
-            </a>
+    <!-- HERO SECTION -->
+    <section class="relative pt-20 md:pt-24 min-h-screen flex items-center overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute top-20 right-10 w-72 h-72 bg-rose-200 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 left-10 w-96 h-96 bg-gold/10 rounded-full blur-3xl"></div>
         </div>
-
-        <div class="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="group relative rounded-[20px] overflow-hidden aspect-[4/5] bg-light border border-dark/5">
-                <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover img-zoom" alt="">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
-                <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shadow-soft">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.5"/></svg>
-                </div>
-                <div class="absolute bottom-3 left-3 text-white text-[12px] font-medium opacity-0 group-hover:opacity-100 transition">Cilt Bakımı • Öncesi/Sonrası</div>
-            </a>
-            <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="group relative rounded-[20px] overflow-hidden aspect-[4/5] bg-light border border-dark/5">
-                <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover img-zoom" alt="">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
-                <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shadow-soft">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.5"/></svg>
-                </div>
-                <div class="absolute bottom-3 left-3 text-white text-[12px] font-medium opacity-0 group-hover:opacity-100 transition">Salon Atmosferi</div>
-            </a>
-            <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="group relative rounded-[20px] overflow-hidden aspect-[4/5] bg-light border border-dark/5">
-                <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover img-zoom" alt="">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
-                <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shadow-soft">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.5"/></svg>
-                </div>
-                <div class="absolute bottom-3 left-3 text-white text-[12px] font-medium opacity-0 group-hover:opacity-100 transition">Kaş & Kirpik Uygulaması</div>
-            </a>
-            <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="group relative rounded-[20px] overflow-hidden aspect-[4/5] bg-light border border-dark/5">
-                <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover img-zoom" alt="">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
-                <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shadow-soft">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.5"/></svg>
-                </div>
-                <div class="absolute bottom-3 left-3 text-white text-[12px] font-medium opacity-0 group-hover:opacity-100 transition">Mutlu Danışanlar</div>
-            </a>
-        </div>
-
-        <div class="mt-8 lg:hidden flex justify-center">
-            <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="h-12 px-8 rounded-full bg-gradient-to-br from-[#FEDA75] via-[#D62976] to-[#4F5BD5] text-white flex items-center gap-2 text-[14px] font-semibold shadow-gold">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.5"/></svg>
-                Instagram'da Takip Et
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- YORUMLAR -->
-<section id="yorumlar" class="py-16 lg:py-24 bg-[#FAF6F3] border-y border-dark/5">
-    <div class="max-w-[1280px] mx-auto px-5 lg:px-8">
-        <div class="flex flex-col lg:flex-row gap-10 items-start">
-            <div class="lg:w-[340px] shrink-0">
-                <div class="rounded-[24px] bg-white border border-dark/5 p-7 shadow-soft">
-                    <div class="flex items-center gap-3">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="w-8 h-8" alt="Google">
-                        <div class="text-[13px] font-bold tracking-wide">Google Değerlendirmeleri</div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Text Content -->
+                <div class="fade-in">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-100 text-gold-dark text-sm font-medium mb-6">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>İzmir Güzelyalı</span>
                     </div>
-                    <div class="mt-5 flex items-baseline gap-2">
-                        <div class="font-serif text-[56px] leading-none">4.9</div>
-                        <div class="text-gold flex">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg>
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-anthracite leading-tight mb-6">
+                        Cildinize Ve<br>
+                        <span class="gold-text italic">Güzelliğinize</span><br>
+                        Uzman Dokunuş
+                    </h1>
+                    <p class="text-lg text-anthracite/70 leading-relaxed mb-8 max-w-lg">
+                        Profesyonel cilt bakımı, estetik çözümler, bölgesel incelme ve kişiye özel bakım uygulamalarımızla doğal ışıltınızı ortaya çıkarın.
+                    </p>
+                    
+                    <!-- Buttons -->
+                    <div class="flex flex-wrap gap-3 mb-10">
+                        <a href="https://wa.me/905300000000?text=Merhaba,%20randevu%20almak%20istiyorum." target="_blank" class="btn-shimmer gold-gradient text-white px-6 py-3.5 rounded-full font-semibold flex items-center gap-2 hover:shadow-xl hover:shadow-gold/30 transition-all text-sm md:text-base">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                            Hızlı Randevu Al
+                        </a>
+                        <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="instagram-gradient text-white px-6 py-3.5 rounded-full font-semibold flex items-center gap-2 hover:shadow-xl hover:shadow-pink-500/30 transition-all text-sm md:text-base">
+                            <i class="fab fa-instagram text-xl"></i>
+                            Instagram
+                        </a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Güzelyalı+60.Sk+No:55+Konak+İzmir" target="_blank" class="bg-white border-2 border-rose-200 text-anthracite px-6 py-3.5 rounded-full font-semibold flex items-center gap-2 hover:border-gold hover:shadow-lg transition-all text-sm md:text-base">
+                            <i class="fas fa-map-marked-alt text-gold"></i>
+                            Yol Tarifi
+                        </a>
+                    </div>
+                    
+                    <!-- Trust Indicators -->
+                    <div class="flex items-center gap-6 flex-wrap">
+                        <div class="flex items-center gap-2">
+                            <div class="flex -space-x-2">
+                                <div class="w-8 h-8 rounded-full bg-rose-200 border-2 border-white flex items-center justify-center text-xs font-bold text-anthracite">A</div>
+                                <div class="w-8 h-8 rounded-full bg-rose-300 border-2 border-white flex items-center justify-center text-xs font-bold text-anthracite">M</div>
+                                <div class="w-8 h-8 rounded-full bg-gold/30 border-2 border-white flex items-center justify-center text-xs font-bold text-anthracite">S</div>
+                            </div>
+                            <span class="text-sm text-anthracite/70">500+ Mutlu Müşteri</span>
+                        </div>
+                        <div class="flex items-center gap-1 star-rating text-sm">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="text-anthracite/70 ml-1">5.0 Google</span>
                         </div>
                     </div>
-                    <div class="mt-2 text-[13px] text-dark/60">127 kişi tarafından değerlendirildi • Son 6 ayda %98 memnuniyet</div>
-                    <div class="mt-5 h-[1px] bg-dark/5"></div>
-                    <div class="mt-5 grid grid-cols-3 gap-3 text-center">
-                        <div><div class="font-serif text-[20px]">%100</div><div class="text-[11px] text-dark/60 uppercase tracking-wide">Hijyen</div></div>
-                        <div><div class="font-serif text-[20px]">%98</div><div class="text-[11px] text-dark/60 uppercase tracking-wide">İlgi</div></div>
-                        <div><div class="font-serif text-[20px]">4.9</div><div class="text-[11px] text-dark/60 uppercase tracking-wide">Sonuç</div></div>
-                    </div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Güzelyalı+60.+Sk.+No:55+Konak+İzmir" target="_blank" class="mt-6 h-10 w-full rounded-full bg-dark text-white flex items-center justify-center text-[12px] font-semibold">Google'da Görüntüle</a>
                 </div>
-            </div>
-
-            <div class="flex-1 grid md:grid-cols-2 gap-4">
-                <div class="rounded-[20px] bg-white border border-dark/5 p-6 shadow-soft">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-full bg-rosenude flex items-center justify-center font-semibold text-[13px]">EÇ</div>
-                            <div><div class="text-[13px] font-semibold">Elif Ç.</div><div class="text-[11px] text-dark/50">2 hafta önce • Google</div></div>
+                
+                <!-- Hero Image -->
+                <div class="fade-in relative">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-br from-rose-200 to-gold/20 rounded-3xl blur-2xl opacity-60"></div>
+                        <div class="relative hero-img rounded-3xl overflow-hidden shadow-2xl">
+                            <img src="https://www.designarena.ai/u/79220549-ea47-4052-ba72-d23e3d3f3c81" alt="Aynur Güzellik Salonu - İzmir Güzelyalı" class="w-full h-[400px] md:h-[500px] lg:h-[550px] object-cover">
                         </div>
-                        <div class="flex text-gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg></div>
-                    </div>
-                    <p class="mt-4 text-[13.5px] leading-[1.6] text-dark/70">“Personel ilgisi harikaydı, ilk andan itibaren güler yüzlü karşılama. Salon tertemiz, tüm aletler steril paketten açıldı. Cilt bakımından çok memnun kaldım.”</p>
-                </div>
-
-                <div class="rounded-[20px] bg-white border border-dark/5 p-6 shadow-soft">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-full bg-nude flex items-center justify-center font-semibold text-[13px]">MK</div>
-                            <div><div class="text-[13px] font-semibold">Merve K.</div><div class="text-[11px] text-dark/50">1 ay önce • Google</div></div>
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3 pulse-ring">
+                            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center">
+                                <i class="fas fa-award text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="font-serif font-bold text-anthracite text-sm">Uzman Kadro</div>
+                                <div class="text-xs text-anthracite/60">Sertifikalı Estetisyenler</div>
+                            </div>
                         </div>
-                        <div class="flex text-gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg></div>
-                    </div>
-                    <p class="mt-4 text-[13.5px] leading-[1.6] text-dark/70">“İpek kirpik ve kaş laminasyonu yaptırdım. Doğallığı bozmadan çok güzel bir sonuç oldu. Hijyen standartları gerçekten üst düzey.”</p>
-                </div>
-
-                <div class="rounded-[20px] bg-dark text-white p-6 shadow-soft">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center font-semibold text-[13px]">SA</div>
-                            <div><div class="text-[13px] font-semibold">Sevda A.</div><div class="text-[11px] text-white/50">3 hafta önce • Google</div></div>
-                        </div>
-                        <div class="flex text-gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg></div>
-                    </div>
-                    <p class="mt-4 text-[13.5px] leading-[1.6] text-white/80">“Bölgesel incelme için geliyorum, cihazlar çok modern ve sonuç odaklı. Aynur Hanım ve ekibi her detayı anlatıyor, güven veriyor.”</p>
-                </div>
-
-                <div class="rounded-[20px] bg-white border border-dark/5 p-6 shadow-soft">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-full bg-rosenude flex items-center justify-center font-semibold text-[13px]">DY</div>
-                            <div><div class="text-[13px] font-semibold">Derya Y.</div><div class="text-[11px] text-dark/50">1 hafta önce • Google</div></div>
-                        </div>
-                        <div class="flex text-gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3L7.4 20l.9-5.2L4.5 11l5.2-.8L12 5.5l2.3 4.7 5.2.8-3.8 3.8.9 5.2L12 17.3Z"/></svg></div>
-                    </div>
-                    <p class="mt-4 text-[13.5px] leading-[1.6] text-dark/70">“Konum olarak çok merkezi, Güzelyalı'da ulaşımı kolay. Randevu saatine sadıklar, bekletme yok. Kesinlikle tavsiye ediyorum.”</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ILETISIM / FOOTER -->
-<section id="iletisim" class="relative bg-dark text-white pt-16 lg:pt-20 pb-28 lg:pb-16">
-    <div class="max-w-[1280px] mx-auto px-5 lg:px-8">
-        <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-start">
-            <div>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-white text-dark flex items-center justify-center font-serif font-bold tracking-widest">A</div>
-                    <div><div class="font-serif font-bold text-[20px] tracking-[0.14em]">AYNUR</div><div class="text-[10px] tracking-[0.3em] uppercase opacity-60 -mt-1">Güzellik Salonu</div></div>
-                </div>
-                <h2 class="mt-8 font-serif text-[36px] lg:text-[48px] leading-[0.95]">Randevu almak<br><span class="italic font-light opacity-80">çok kolay</span></h2>
-                <p class="mt-4 text-[14px] leading-[1.6] text-white/60 max-w-[420px]">Güzelyalı'nın kalbinde, hijyenik ve ferah salonumuzda sizi ağırlamaktan memnuniyet duyarız. Aynı gün randevu için WhatsApp'tan yazmanız yeterli.</p>
-
-                <div class="mt-8 space-y-4">
-                    <div class="flex gap-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-6-5.2-6-10a6 6 0 0 1 12 0c0 4.8-6 10-6 10Z"/><circle cx="12" cy="11" r="2"/></svg>
-                        </div>
-                        <div>
-                            <div class="text-[11px] tracking-widest uppercase opacity-50 font-semibold">Adres</div>
-                            <div class="mt-1 text-[14px] leading-[1.5]">Güzelyalı, 60. Sk. No:55, 35290<br>Konak / İzmir</div>
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=Güzelyalı+60.+Sk.+No:55+Konak+İzmir" target="_blank" class="mt-2 inline-flex text-[12px] font-semibold tracking-wide text-gold hover:text-rosegold transition">Haritada Aç →</a>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3.1 5.2 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.7l.5 3a2 2 0 0 1-.6 1.8L9 10.5a16 16 0 0 0 4.5 4.5l1-1a2 2 0 0 1 1.8-.6l3 .5A2 2 0 0 1 22 16.9Z"/></svg>
-                        </div>
-                        <div>
-                            <div class="text-[11px] tracking-widest uppercase opacity-50 font-semibold">Telefon</div>
-                            <div class="mt-1 flex flex-col gap-1">
-                                <a href="tel:+905325555566" class="text-[14px] hover:text-gold transition">+90 532 555 55 66</a>
-                                <a href="tel:+902324445566" class="text-[14px] text-white/60 hover:text-white transition">+90 232 444 55 66 (Sabit)</a>
+                        <!-- Floating Badge 2 -->
+                        <div class="absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl p-4 hidden md:block">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-shield-alt text-gold text-xl"></i>
+                                <div>
+                                    <div class="font-bold text-anthracite text-sm">%100 Hijyen</div>
+                                    <div class="text-xs text-anthracite/60">Steril Ortam</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="flex gap-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        </div>
-                        <div>
-                            <div class="text-[11px] tracking-widest uppercase opacity-50 font-semibold">Çalışma Saatleri</div>
-                            <div class="mt-1 text-[14px] leading-[1.5]">Haftanın 6 Günü: 09:00 - 20:00<br><span class="text-white/50">Pazar: Kapalı • Randevulu Çalışıyoruz</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-10 flex flex-wrap gap-3">
-                    <a href="https://wa.me/905325555566?text=Merhaba%20Aynur%20G%C3%BCzellik%20Salonu%2C%20randevu%20almak%20istiyorum." target="_blank" class="h-12 px-6 rounded-full bg-white text-dark flex items-center gap-2 text-[13px] font-semibold hover:bg-rosenude transition">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.05 4.94A9.91 9.91 0 0 0 12.04 2C6.58 2 2.15 6.45 2.15 10.92c0 1.57.41 3.1 1.19 4.45L2 22l6.82-1.79a9.87 9.87 0 0 0 4.72 1.2h.01c5.46 0 9.89-4.45 9.89-9.92a9.84 9.84 0 0 0-2.89-6.97l-.6-.58ZM12.05 19.6h-.01a8.13 8.13 0 0 1-4.15-1.14l-.3-.18-4.05 1.06 1.08-3.95-.19-.31a8.1 8.1 0 0 1-1.25-4.16c0-4.5 3.66-8.16 8.17-8.16a8.08 8.08 0 0 1 5.76 2.39 8.05 8.05 0 0 1 2.38 5.74c0 4.5-3.66 8.16-8.16 8.16l.52.55ZM16.58 13.7c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.57.12-.17.25-.66.81-.81.97-.15.17-.3.19-.55.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.57-1.38-.78-1.89-.2-.49-.41-.42-.57-.43h-.49c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.6c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.14-1.19-.06-.11-.23-.17-.48-.29Z"/></svg>
-                        WhatsApp Randevu
-                    </a>
-                    <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="h-12 px-6 rounded-full bg-white/10 border border-white/15 flex items-center gap-2 text-[13px] font-semibold hover:bg-white/15 transition">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.5"/></svg>
-                        Instagram
-                    </a>
-                </div>
-            </div>
-
-            <div class="relative">
-                <div class="rounded-[24px] overflow-hidden border border-white/10 bg-white/5 p-2">
-                    <div class="rounded-[16px] overflow-hidden aspect-[4/3] bg-[#E8D5C4] relative">
-                        <iframe
-                            class="w-full h-full border-0"
-                            loading="lazy"
-                            allowfullscreen
-                            referrerpolicy="no-referrer-when-downgrade"
-                            src="https://www.google.com/maps?q=Güzelyalı,+60.+Sk.+No:55,+Konak/İzmir&z=16&output=embed">
-                        </iframe>
-                        <div class="absolute bottom-3 left-3 right-3 rounded-full bg-dark/90 glass px-4 py-2.5 flex items-center justify-between">
-                            <div class="text-[12px] leading-[1.2]"><span class="font-semibold">Güzelyalı, 60. Sk. No:55</span><br><span class="opacity-60 text-[11px]">Konak / İzmir</span></div>
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=Güzelyalı+60.+Sk.+No:55+Konak+İzmir" target="_blank" class="h-8 px-4 rounded-full bg-white text-dark text-[11px] font-bold flex items-center">Yol Tarifi</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-6 rounded-[16px] bg-white/[0.06] border border-white/10 p-4 flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-gold text-dark flex items-center justify-center font-bold">!</div>
-                    <div class="text-[12px] leading-[1.5] text-white/70"><span class="text-white font-semibold">Randevular randevu sistemi ile ilerlemektedir.</span><br>Lütfen gelmeden önce WhatsApp üzerinden onay alınız.</div>
-                </div>
-
-                <div class="mt-10 flex items-center justify-between text-[11px] tracking-wide text-white/40">
-                    <div>© 2026 Aynur Güzellik Salonu • Tüm hakları saklıdır.</div>
-                    <div class="hidden sm:flex gap-4"><span>KVKK</span><span>•</span><span>Gizlilik</span></div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- MOBILE FLOATING BAR -->
-<div class="lg:hidden fixed bottom-0 inset-x-0 z-40 px-3 pb-[max(12px,env(safe-area-inset-bottom))] pt-3 bg-gradient-to-t from-black/30 to-transparent pointer-events-none">
-    <div class="pointer-events-auto rounded-[20px] bg-white/95 glass border border-dark/10 shadow-[0_10px_40px_rgba(0,0,0,0.18)] p-2 flex gap-2">
-        <a href="https://wa.me/905325555566?text=Merhaba%20Aynur%20G%C3%BCzellik%20Salonu%2C%20randevu%20almak%20istiyorum." target="_blank" class="flex-1 h-12 rounded-full bg-dark text-white flex items-center justify-center gap-1.5 text-[12.5px] font-semibold">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.05 4.94A9.91 9.91 0 0 0 12.04 2C6.58 2 2.15 6.45 2.15 10.92c0 1.57.41 3.1 1.19 4.45L2 22l6.82-1.79a9.87 9.87 0 0 0 4.72 1.2h.01c5.46 0 9.89-4.45 9.89-9.92a9.84 9.84 0 0 0-2.89-6.97l-.6-.58ZM12.05 19.6h-.01a8.13 8.13 0 0 1-4.15-1.14l-.3-.18-4.05 1.06 1.08-3.95-.19-.31a8.1 8.1 0 0 1-1.25-4.16c0-4.5 3.66-8.16 8.17-8.16a8.08 8.08 0 0 1 5.76 2.39 8.05 8.05 0 0 1 2.38 5.74c0 4.5-3.66 8.16-8.16 8.16l.52.55ZM16.58 13.7c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.57.12-.17.25-.66.81-.81.97-.15.17-.3.19-.55.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.57-1.38-.78-1.89-.2-.49-.41-.42-.57-.43h-.49c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.6c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.14-1.19-.06-.11-.23-.17-.48-.29Z"/></svg>
-            Randevu
-        </a>
-        <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="flex-1 h-12 rounded-full bg-gradient-to-br from-[#FEDA75] via-[#D62976] to-[#4F5BD5] text-white flex items-center justify-center gap-1.5 text-[12.5px] font-semibold">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.5"/></svg>
-            Instagram
-        </a>
-        <a href="https://www.google.com/maps/dir/?api=1&destination=Güzelyalı+60.+Sk.+No:55+Konak+İzmir" target="_blank" class="flex-1 h-12 rounded-full bg-rosenude text-dark border border-dark/10 flex items-center justify-center gap-1.5 text-[12.5px] font-semibold">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-6-5.2-6-10a6 6 0 0 1 12 0c0 4.8-6 10-6 10Z"/><circle cx="12" cy="11" r="2"/></svg>
-            Haritada Aç
-        </a>
-    </div>
-</div>
+    <!-- HAKKIMIZDA SECTION -->
+    <section id="hakkimizda" class="py-20 md:py-28 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <span class="text-gold font-medium text-sm uppercase tracking-wider">Hakkımızda</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold text-anthracite mt-3 mb-4">Güzelliğinize Değer Katan<br><span class="gold-text italic">Profesyonel Yaklaşım</span></h2>
+                <div class="section-divider mt-6"></div>
+                <p class="mt-6 text-anthracite/70 max-w-2xl mx-auto text-lg leading-relaxed">
+                    Aynur Güzellik Salonu olarak, İzmir Güzelyalı'nın kalbinde hijyen standartlarından ödün vermeden, kişiye özel bakım protokolleri ile hizmet veriyoruz.
+                </p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 fade-in">
+                <!-- Card 1 -->
+                <div class="card-hover bg-cream rounded-2xl p-8 border border-rose-100 text-center">
+                    <div class="w-16 h-16 mx-auto rounded-full gold-gradient flex items-center justify-center mb-5">
+                        <i class="fas fa-user-md text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-anthracite mb-3">Uzman Estetisyen Kadrosu</h3>
+                    <p class="text-anthracite/60 text-sm leading-relaxed">Sertifikalı ve deneyimli ekibimiz ile en güncel teknikleri uyguluyoruz.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="card-hover bg-cream rounded-2xl p-8 border border-rose-100 text-center">
+                    <div class="w-16 h-16 mx-auto rounded-full gold-gradient flex items-center justify-center mb-5">
+                        <i class="fas fa-shield-virus text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-anthracite mb-3">%100 Steril & Hijyenik</h3>
+                    <p class="text-anthracite/60 text-sm leading-relaxed">Tek kullanımlık malzemeler ve sterilizasyon prosedürleri ile güvenli hizmet.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="card-hover bg-cream rounded-2xl p-8 border border-rose-100 text-center">
+                    <div class="w-16 h-16 mx-auto rounded-full gold-gradient flex items-center justify-center mb-5">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-anthracite mb-3">Yüksek Müşteri Memnuniyeti</h3>
+                    <p class="text-anthracite/60 text-sm leading-relaxed">500+ mutlu müşterimiz ve 5 yıldızlı Google değerlendirmeleri.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="card-hover bg-cream rounded-2xl p-8 border border-rose-100 text-center">
+                    <div class="w-16 h-16 mx-auto rounded-full gold-gradient flex items-center justify-center mb-5">
+                        <i class="fas fa-clipboard-list text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-anthracite mb-3">Kişiye Özel Protokoller</h3>
+                    <p class="text-anthracite/60 text-sm leading-relaxed">Cilt tipinize ve ihtiyaçlarınıza özel hazırlanan bakım planları.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuIcon = document.getElementById('menuIcon');
-    const closeIcon = document.getElementById('closeIcon');
-    let open = false;
-    menuBtn.addEventListener('click', () => {
-        open = !open;
-        mobileMenu.classList.toggle('hidden', !open);
-        menuIcon.classList.toggle('hidden', open);
-        closeIcon.classList.toggle('hidden', !open);
-    });
-    document.querySelectorAll('.mobileLink, .navlink').forEach(a=>{
-        a.addEventListener('click', (e)=>{
-            const href = a.getAttribute('href');
-            if(href && href.startsWith('#')){
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if(target){
-                    const top = target.getBoundingClientRect().top + window.scrollY - 80;
-                    window.scrollTo({top, behavior:'smooth'});
-                }
-                if(open){
-                    open=false;
-                    mobileMenu.classList.add('hidden');
-                    menuIcon.classList.remove('hidden');
-                    closeIcon.classList.add('hidden');
-                }
+    <!-- HİZMETLER SECTION -->
+    <section id="hizmetler" class="py-20 md:py-28 bg-gradient-to-b from-cream to-rose-50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <span class="text-gold font-medium text-sm uppercase tracking-wider">Hizmetlerimiz</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold text-anthracite mt-3 mb-4">Profesyonel <span class="gold-text italic">Bakım</span> Çözümleri</h2>
+                <div class="section-divider mt-6"></div>
+                <p class="mt-6 text-anthracite/70 max-w-2xl mx-auto text-lg leading-relaxed">
+                    En son teknoloji cihazlar ve premium ürünlerle sunduğumuz hizmetlerimizle tanışın.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 fade-in">
+                <!-- Service Card 1 -->
+                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-rose-100">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=400&fit=crop" alt="Profesyonel Cilt Bakımı" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-semibold text-gold-dark">
+                            <i class="fas fa-star text-gold mr-1"></i> En Popüler
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center mb-4">
+                            <i class="fas fa-spa text-gold text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-anthracite mb-3">Profesyonel & Medikal Cilt Bakımı</h3>
+                        <p class="text-anthracite/60 text-sm leading-relaxed mb-5">Derinlemesine cilt temizliği, nem ve leke bakımları, anti-aging yenileme protokolleri ile cildinize hak ettiği özeni sunuyoruz.</p>
+                        <a href="https://wa.me/905300000000?text=Merhaba,%20cilt%20bakımı%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="inline-flex items-center gap-2 text-gold-dark font-semibold text-sm hover:text-gold transition group">
+                            WhatsApp ile Bilgi Al
+                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-rose-100">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&h=400&fit=crop" alt="Epilasyon & Bölgesel İncelme" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center mb-4">
+                            <i class="fas fa-bolt text-gold text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-anthracite mb-3">Epilasyon & Bölgesel İncelme</h3>
+                        <p class="text-anthracite/60 text-sm leading-relaxed mb-5">Konforlu, son teknoloji cihazlarla epilasyon ve vücut şekillendirme çözümleri ile istediğiniz görünüme kavuşun.</p>
+                        <a href="https://wa.me/905300000000?text=Merhaba,%20epilasyon%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="inline-flex items-center gap-2 text-gold-dark font-semibold text-sm hover:text-gold transition group">
+                            WhatsApp ile Bilgi Al
+                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-rose-100">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=400&fit=crop" alt="Kaş, Kirpik & Kalıcı Makyaj" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center mb-4">
+                            <i class="fas fa-eye text-gold text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-anthracite mb-3">Kaş, Kirpik & Kalıcı Makyaj</h3>
+                        <p class="text-anthracite/60 text-sm leading-relaxed mb-5">İpek kirpik, kaş laminasyonu ve doğal dudak renklendirme uygulamaları ile her gün bakımlı görünün.</p>
+                        <a href="https://wa.me/905300000000?text=Merhaba,%20kaş%20kirpik%20hizmetleri%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="inline-flex items-center gap-2 text-gold-dark font-semibold text-sm hover:text-gold transition group">
+                            WhatsApp ile Bilgi Al
+                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSTAGRAM SECTION -->
+    <section id="instagram" class="py-20 md:py-28 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <span class="text-gold font-medium text-sm uppercase tracking-wider">Sosyal Medya</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold text-anthracite mt-3 mb-4">Uygulamalarımızı <span class="gold-text italic">Instagram'da</span> Keşfedin</h2>
+                <div class="section-divider mt-6"></div>
+                <p class="mt-6 text-anthracite/70 max-w-2xl mx-auto text-lg leading-relaxed">
+                    @aynurguzelliksalonu hesabımızı takip ederek en güncel salon ortamımızı ve değişimleri inceleyebilirsiniz.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 fade-in">
+                <!-- IG Card 1 -->
+                <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="ig-card rounded-2xl overflow-hidden aspect-square group">
+                    <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&h=400&fit=crop" alt="Cilt Bakımı Uygulaması" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="ig-overlay">
+                        <i class="fab fa-instagram text-white text-4xl"></i>
+                    </div>
+                </a>
+                <!-- IG Card 2 -->
+                <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="ig-card rounded-2xl overflow-hidden aspect-square group">
+                    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=400&fit=crop" alt="Saç Bakımı" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="ig-overlay">
+                        <i class="fab fa-instagram text-white text-4xl"></i>
+                    </div>
+                </a>
+                <!-- IG Card 3 -->
+                <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="ig-card rounded-2xl overflow-hidden aspect-square group">
+                    <img src="https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=400&h=400&fit=crop" alt="Kaş Tasarımı" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="ig-overlay">
+                        <i class="fab fa-instagram text-white text-4xl"></i>
+                    </div>
+                </a>
+                <!-- IG Card 4 -->
+                <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="ig-card rounded-2xl overflow-hidden aspect-square group">
+                    <img src="https://images.unsplash.com/photo-1522337094846-8a818192de1f?w=400&h=400&fit=crop" alt="Güzellik Salonu" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="ig-overlay">
+                        <i class="fab fa-instagram text-white text-4xl"></i>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="text-center mt-12 fade-in">
+                <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="btn-shimmer instagram-gradient text-white px-10 py-4 rounded-full font-semibold inline-flex items-center gap-3 hover:shadow-xl hover:shadow-pink-500/30 transition-all text-lg">
+                    <i class="fab fa-instagram text-2xl"></i>
+                    Instagram'da Takip Et
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MÜŞTERİ YORUMLARI SECTION -->
+    <section id="yorumlar" class="py-20 md:py-28 bg-gradient-to-b from-rose-50 to-cream relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <span class="text-gold font-medium text-sm uppercase tracking-wider">Müşteri Yorumları</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold text-anthracite mt-3 mb-4">Müşterilerimiz <span class="gold-text italic">Ne Diyor?</span></h2>
+                <div class="section-divider mt-6"></div>
+                
+                <!-- Google Badge -->
+                <div class="mt-8 inline-flex items-center gap-3 bg-white px-6 py-3 rounded-2xl shadow-lg border border-rose-100">
+                    <img src="https://www.google.com/favicon.ico" alt="Google" class="w-6 h-6">
+                    <div class="text-left">
+                        <div class="flex items-center gap-1 star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="text-anthracite font-bold ml-1">5.0</span>
+                        </div>
+                        <div class="text-xs text-anthracite/60">Google Değerlendirmeleri</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6 fade-in">
+                <!-- Review 1 -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border border-rose-100">
+                    <div class="flex items-center gap-1 star-rating mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-anthracite/70 leading-relaxed mb-6 italic">"Personel son derece ilgili ve güler yüzlü. Hijyen konusunda çok titizler, her şey tek kullanımlık. Cilt bakımından sonra cildim hiç bu kadar parlak olmamıştı!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-rose-200 flex items-center justify-center font-serif font-bold text-anthracite">E</div>
+                        <div>
+                            <div class="font-semibold text-anthracite text-sm">Elif K.</div>
+                            <div class="text-xs text-anthracite/50">Google Yorumu</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border border-rose-100">
+                    <div class="flex items-center gap-1 star-rating mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-anthracite/70 leading-relaxed mb-6 italic">"Salonun hijyen standartları gerçekten etkileyici. Aynur Hanım işinin uzmanı, size özel bir program hazırlıyor. Bölgesel incelme seanslarından çok memnun kaldım."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-gold/30 flex items-center justify-center font-serif font-bold text-anthracite">S</div>
+                        <div>
+                            <div class="font-semibold text-anthracite text-sm">Selin M.</div>
+                            <div class="text-xs text-anthracite/50">Google Yorumu</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border border-rose-100">
+                    <div class="flex items-center gap-1 star-rating mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-anthracite/70 leading-relaxed mb-6 italic">"İpek kirpik uygulaması mükemmel oldu! Doğal görünüm tam istediğim gibi. Karşılama çok sıcaktı, kendinizi evinizde hissediyorsunuz. Kesinlikle tavsiye ederim."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-rose-300 flex items-center justify-center font-serif font-bold text-anthracite">D</div>
+                        <div>
+                            <div class="font-semibold text-anthracite text-sm">Deniz A.</div>
+                            <div class="text-xs text-anthracite/50">Google Yorumu</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / İLETİŞİM -->
+    <footer id="iletisim" class="bg-anthracite text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gold rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <!-- Brand -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-2 mb-5">
+                        <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center">
+                            <span class="text-white font-serif font-bold text-lg">A</span>
+                        </div>
+                        <span class="font-serif text-xl font-bold">Aynur Güzellik Salonu</span>
+                    </div>
+                    <p class="text-white/60 text-sm leading-relaxed mb-5">İzmir Güzelyalı'nın kalbinde profesyonel güzellik ve bakım hizmetleri sunuyoruz.</p>
+                    <div class="flex items-center gap-3">
+                        <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-gold flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/905300000000" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-green-500 flex items-center justify-center transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-serif text-lg font-bold mb-5 gold-text">İletişim</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-gold mt-1"></i>
+                            <span class="text-white/70 text-sm">Güzelyalı, 60. Sk. No:55, 35290 Konak / İzmir</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone text-gold"></i>
+                            <a href="tel:+905300000000" class="text-white/70 text-sm hover:text-gold transition">0530 000 00 00</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-clock text-gold"></i>
+                            <span class="text-white/70 text-sm">Pzt - Cmt: 09:00 - 19:00</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-serif text-lg font-bold mb-5 gold-text">Hızlı Erişim</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#hakkimizda" class="text-white/70 text-sm hover:text-gold transition">Hakkımızda</a></li>
+                        <li><a href="#hizmetler" class="text-white/70 text-sm hover:text-gold transition">Hizmetler</a></li>
+                        <li><a href="#instagram" class="text-white/70 text-sm hover:text-gold transition">Instagram</a></li>
+                        <li><a href="#yorumlar" class="text-white/70 text-sm hover:text-gold transition">Müşteri Yorumları</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Map -->
+                <div>
+                    <h4 class="font-serif text-lg font-bold mb-5 gold-text">Konum</h4>
+                    <div class="rounded-2xl overflow-hidden h-40 bg-white/10 mb-4">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3126.5!2d27.12!3d38.41!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDI0JzM2LjAiTiAyN8KwMDcnMTIuMCJF!5e0!3m2!1str!2str!4v1" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" class="grayscale hover:grayscale-0 transition-all duration-500"></iframe>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Güzelyalı+60.Sk+No:55+Konak+İzmir" target="_blank" class="inline-flex items-center gap-2 text-gold text-sm hover:text-gold-light transition">
+                        <i class="fas fa-directions"></i> Haritada Yol Tarifi Al
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-white/40 text-sm">© 2024 Aynur Güzellik Salonu. Tüm hakları saklıdır.</p>
+                <p class="text-white/40 text-sm">İzmir Güzelyalı'da profesyonel güzellik hizmeti</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING MOBILE BOTTOM BAR -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 float-bar bg-white border-t border-rose-100 px-3 py-2.5">
+        <div class="grid grid-cols-3 gap-2">
+            <a href="https://wa.me/905300000000?text=Merhaba,%20randevu%20almak%20istiyorum." target="_blank" class="gold-gradient text-white rounded-xl py-3 flex flex-col items-center gap-1 text-xs font-semibold">
+                <i class="fab fa-whatsapp text-xl"></i>
+                <span>Randevu</span>
+            </a>
+            <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="instagram-gradient text-white rounded-xl py-3 flex flex-col items-center gap-1 text-xs font-semibold">
+                <i class="fab fa-instagram text-xl"></i>
+                <span>Instagram</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Güzelyalı+60.Sk+No:55+Konak+İzmir" target="_blank" class="bg-rose-100 text-anthracite rounded-xl py-3 flex flex-col items-center gap-1 text-xs font-semibold">
+                <i class="fas fa-map-marked-alt text-xl text-gold-dark"></i>
+                <span>Harita</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Spacer for mobile bottom bar -->
+    <div class="md:hidden h-20"></div>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileNav = document.getElementById('mobileNav');
+        const overlay = document.getElementById('overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
+        function openMenu() {
+            mobileNav.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMenuFn() {
+            mobileNav.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        menuBtn.addEventListener('click', openMenu);
+        closeMenu.addEventListener('click', closeMenuFn);
+        overlay.addEventListener('click', closeMenuFn);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenuFn));
+        
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
             }
-        })
-    });
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', ()=>{
-        if(window.scrollY>10){ header.classList.add('shadow-soft'); header.classList.remove('bg-light/80'); header.classList.add('bg-white/90'); }
-        else{ header.classList.remove('shadow-soft'); header.classList.add('bg-light/80'); header.classList.remove('bg-white/90'); }
-    });
-</script>
+            
+            lastScroll = currentScroll;
+        });
+        
+        // Fade-in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        fadeElements.forEach(el => observer.observe(el));
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add subtle parallax to hero image
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImg = document.querySelector('.hero-img img');
+            if (heroImg && scrolled < 800) {
+                heroImg.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+        });
+    </script>
 </body>
 </html>
