@@ -3,505 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aynur Güzellik Salonu | İzmir Güzelyalı</title>
+    <title>BG Natura Kuaför ve Güzellik Salonu | İzmir Güzellik Salonu</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        rose: {
-                            50: '#FDF8F9',
-                            100: '#F4E8EB',
-                            200: '#EDD5DA',
-                            300: '#E8D5C4',
-                            400: '#D4A99E',
-                        },
-                        gold: {
-                            DEFAULT: '#D4AF37',
-                            light: '#E0A96D',
-                            dark: '#B8962E',
-                        },
-                        anthracite: '#2B232A',
-                        cream: '#FAFAFA',
-                    },
-                    fontFamily: {
-                        serif: ['Playfair Display', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        gold: '#D4AF37',
+                        'gold-light': '#F3E5AB',
+                        softpink: '#FFF5F5',
+                        anthracite: '#2C2C2C'
                     }
                 }
             }
         }
     </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { scroll-behavior: smooth; }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .font-serif { font-family: 'Playfair Display', serif; }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, rgba(244,232,235,0.95) 0%, rgba(232,213,196,0.85) 50%, rgba(250,250,250,0.9) 100%);
-        }
-        
-        .gold-gradient {
-            background: linear-gradient(135deg, #D4AF37 0%, #E0A96D 50%, #D4AF37 100%);
-        }
-        
-        .gold-text {
-            background: linear-gradient(135deg, #D4AF37, #E0A96D);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .instagram-gradient {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-        }
-        
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(43, 35, 42, 0.15);
-        }
-        
-        .btn-shimmer {
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-shimmer::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
-        }
-        .btn-shimmer:hover::after {
-            transform: translateX(100%);
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #D4AF37, #E0A96D);
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .mobile-nav {
-            transform: translateX(100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .mobile-nav.open {
-            transform: translateX(0);
-        }
-        
-        .overlay {
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        .overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .star-rating { color: #D4AF37; }
-        
-        .pulse-ring {
-            animation: pulseRing 2s ease-out infinite;
-        }
-        @keyframes pulseRing {
-            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
-        }
-        
-        .section-divider {
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #D4AF37, #E0A96D);
-            margin: 0 auto;
-        }
-        
-        .ig-card {
-            position: relative;
-            overflow: hidden;
-        }
-        .ig-card .ig-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(43, 35, 42, 0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .ig-card:hover .ig-overlay {
-            opacity: 1;
-        }
-
-        .hero-img {
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
-        }
-        
-        @media (max-width: 768px) {
-            .hero-img {
-                clip-path: none;
-            }
-        }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
     </style>
 </head>
-<body class="bg-cream text-anthracite overflow-x-hidden pb-16 md:pb-0">
+<body class="bg-slate-50 text-slate-700 antialiased selection:bg-gold selection:text-white">
 
-    <!-- NAVBAR -->
-    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-lg border-b border-rose-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 md:h-20">
-                <!-- Logo -->
-                <a href="#" class="flex items-center gap-2 group">
-                    <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center">
-                        <span class="text-white font-serif font-bold text-lg">A</span>
-                    </div>
-                    <div>
-                        <span class="font-serif text-lg md:text-xl font-bold text-anthracite">Aynur</span>
-                        <span class="hidden sm:inline text-xs text-gold-dark ml-1 font-medium">Güzellik Salonu</span>
-                    </div>
-                </a>
-                
-                <!-- Desktop Nav -->
-                <nav class="hidden lg:flex items-center gap-8">
-                    <a href="#hakkimizda" class="nav-link text-sm font-medium text-anthracite/80 hover:text-anthracite transition">Hakkımızda</a>
-                    <a href="#hizmetler" class="nav-link text-sm font-medium text-anthracite/80 hover:text-anthracite transition">Hizmetler</a>
-                    <a href="#randevu-al" class="nav-link text-sm font-medium text-gold-dark font-bold hover:text-gold transition">Randevu Al</a>
-                    <a href="#instagram" class="nav-link text-sm font-medium text-anthracite/80 hover:text-anthracite transition">Instagram</a>
-                    <a href="#yorumlar" class="nav-link text-sm font-medium text-anthracite/80 hover:text-anthracite transition">Müşteri Yorumları</a>
-                    <a href="#iletisim" class="nav-link text-sm font-medium text-anthracite/80 hover:text-anthracite transition">İletişim</a>
-                </nav>
-                
-                <!-- CTA Buttons -->
-                <div class="hidden md:flex items-center gap-3">
-                    <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="flex items-center gap-2 px-4 py-2 rounded-full border border-rose-200 text-anthracite/80 hover:border-gold hover:text-gold-dark transition text-sm font-medium">
-                        <i class="fab fa-instagram text-lg"></i>
-                        <span class="hidden xl:inline">Instagram</span>
-                    </a>
-                    <a href="#randevu-al" class="btn-shimmer gold-gradient text-white px-5 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 hover:shadow-lg hover:shadow-gold/30 transition-all">
-                        <i class="far fa-calendar-alt text-lg"></i>
-                        <span>Hızlı Randevu</span>
-                    </a>
-                </div>
-                
-                <!-- Mobile Menu Button -->
-                <button id="menuBtn" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-rose-50 transition" aria-label="Menü">
-                    <i class="fas fa-bars text-xl text-anthracite"></i>
-                </button>
+    <!-- Top Info Bar -->
+    <div class="bg-anthracite text-white/80 text-xs py-2 px-4 border-b border-white/10 hidden md:block">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <span><i class="fa-solid fa-location-dot text-gold mr-2"></i>İzmir, Türkiye</span>
+                <span><i class="fa-solid fa-clock text-gold mr-2"></i>Pzt - Cmt: 09:00 - 19:30</span>
             </div>
-        </div>
-    </header>
-
-    <!-- Mobile Nav Overlay -->
-    <div id="overlay" class="overlay fixed inset-0 bg-anthracite/50 z-50"></div>
-    
-    <!-- Mobile Nav -->
-    <div id="mobileNav" class="mobile-nav fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white z-50 shadow-2xl">
-        <div class="p-6">
-            <div class="flex items-center justify-between mb-8">
-                <span class="font-serif text-xl font-bold text-anthracite">Aynur Güzellik</span>
-                <button id="closeMenu" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-rose-50 transition">
-                    <i class="fas fa-times text-xl text-anthracite"></i>
-                </button>
-            </div>
-            <nav class="flex flex-col gap-1">
-                <a href="#hakkimizda" class="mobile-link py-3 px-4 rounded-lg hover:bg-rose-50 text-anthracite font-medium transition">Hakkımızda</a>
-                <a href="#hizmetler" class="mobile-link py-3 px-4 rounded-lg hover:bg-rose-50 text-anthracite font-medium transition">Hizmetler</a>
-                <a href="#randevu-al" class="mobile-link py-3 px-4 rounded-lg hover:bg-rose-50 text-anthracite font-medium transition text-gold-dark">Randevu Al</a>
-                <a href="#instagram" class="mobile-link py-3 px-4 rounded-lg hover:bg-rose-50 text-anthracite font-medium transition">Instagram</a>
-                <a href="#yorumlar" class="mobile-link py-3 px-4 rounded-lg hover:bg-rose-50 text-anthracite font-medium transition">Müşteri Yorumları</a>
-                <a href="#iletisim" class="mobile-link py-3 px-4 rounded-lg hover:bg-rose-50 text-anthracite font-medium transition">İletişim</a>
-            </nav>
-            <div class="mt-8 flex flex-col gap-3">
-                <a href="#randevu-al" class="mobile-link gold-gradient text-white py-3 rounded-full text-center font-semibold flex items-center justify-center gap-2">
-                    <i class="far fa-calendar-alt text-xl"></i> Randevu Oluştur
-                </a>
-                <a href="https://wa.me/905079243123?text=Merhaba,%20bilgi%20almak%20istiyorum." target="_blank" class="bg-emerald-600 text-white py-3 rounded-full text-center font-semibold flex items-center justify-center gap-2">
-                    <i class="fab fa-whatsapp text-xl"></i> WhatsApp İletişim
-                </a>
+            <div class="flex items-center space-x-4">
+                <a href="https://wa.me/905079243123" target="_blank" class="hover:text-gold transition"><i class="fa-brands fa-whatsapp text-sm mr-1"></i> Quick Contact</a>
             </div>
         </div>
     </div>
 
-    <!-- HERO SECTION -->
-    <section class="relative pt-20 md:pt-24 min-h-screen flex items-center overflow-hidden">
-        <div class="absolute inset-0 opacity-30">
-            <div class="absolute top-20 right-10 w-72 h-72 bg-rose-200 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-20 left-10 w-96 h-96 bg-gold/10 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                <!-- Text Content -->
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-rose-100/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold font-serif font-bold text-xl">BG</div>
                 <div>
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-100 text-gold-dark text-sm font-medium mb-6">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>İzmir Güzelyalı</span>
-                    </div>
-                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-anthracite leading-tight mb-6">
-                        Cildinize Ve<br>
-                        <span class="gold-text italic">Güzelliğinize</span><br>
-                        Uzman Dokunuş
+                    <span class="block font-serif text-xl font-bold text-anthracite tracking-wider">BG NATURA</span>
+                    <span class="block text-[10px] uppercase tracking-[0.2em] text-gold font-semibold">Kuaför & Güzellik</span>
+                </div>
+            </a>
+            
+            <nav class="hidden md:flex space-x-8 font-medium text-sm text-slate-600">
+                <a href="#hizmetler" class="hover:text-gold transition">Hizmetlerimiz</a>
+                <a href="#hakkimizda" class="hover:text-gold transition">Hakkımızda</a>
+                <a href="#galeri" class="hover:text-gold transition">Galeri</a>
+                <a href="#randevu" class="hover:text-gold transition">Randevu Al</a>
+            </nav>
+
+            <a href="https://wa.me/905079243123" target="_blank" class="bg-gold hover:bg-amber-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm shadow-md shadow-gold/20 transition transform hover:-translate-y-0.5 flex items-center space-x-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Hızlı Randevu</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-b from-softpink via-white to-slate-50 py-20 lg:py-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-center lg:text-left">
+                    <span class="inline-block px-4 py-1.5 rounded-full bg-gold/10 text-gold font-semibold text-xs tracking-widest uppercase">Güzelliğinize Doğal Dokunuş</span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-anthracite leading-tight">
+                        Kendinizi Şımartmanın <br><span class="text-gold italic">En Doğal Hali</span>
                     </h1>
-                    <p class="text-lg text-anthracite/70 leading-relaxed mb-8 max-w-lg">
-                        Profesyonel cilt bakımı, estetik çözümler, bölgesel incelme ve kişiye özel bakım uygulamalarımızla doğal ışıltınızı ortaya çıkarın.
+                    <p class="text-slate-600 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        BG Natura olarak, uzman kadromuz ve üst segment bakım ürünlerimizle güzelliğinizi ve sağlığınızı ön planda tutuyoruz.
                     </p>
-                    
-                    <!-- Buttons -->
-                    <div class="flex flex-wrap gap-3 mb-10">
-                        <a href="#randevu-al" class="btn-shimmer gold-gradient text-white px-6 py-3.5 rounded-full font-semibold flex items-center gap-2 hover:shadow-xl hover:shadow-gold/30 transition-all text-sm md:text-base">
-                            <i class="far fa-calendar-alt text-xl"></i>
-                            Randevu Oluştur
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#randevu" class="w-full sm:w-auto bg-anthracite hover:bg-black text-white font-medium px-8 py-4 rounded-xl shadow-lg transition text-center">
+                            Online Randevu Al
                         </a>
-                        <a href="https://wa.me/905079243123?text=Merhaba,%20bilgi%20almak%20istiyorum." target="_blank" class="bg-emerald-600 text-white px-6 py-3.5 rounded-full font-semibold flex items-center gap-2 hover:bg-emerald-700 transition-all text-sm md:text-base">
-                            <i class="fab fa-whatsapp text-xl"></i>
-                            WhatsApp Bilgi Al
+                        <a href="https://wa.me/905079243123" target="_blank" class="w-full sm:w-auto border border-gold text-gold hover:bg-gold hover:text-white font-medium px-8 py-4 rounded-xl transition text-center flex items-center justify-center space-x-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>WhatsApp Bilgi</span>
                         </a>
-                        <a href="https://maps.app.goo.gl/mm4JY5uAFTTg3TZL8" target="_blank" class="bg-white border-2 border-rose-200 text-anthracite px-6 py-3.5 rounded-full font-semibold flex items-center gap-2 hover:border-gold hover:shadow-lg transition-all text-sm md:text-base">
-                            <i class="fas fa-map-marked-alt text-gold"></i>
-                            Yol Tarifi
-                        </a>
-                    </div>
-                    
-                    <!-- Trust Indicators -->
-                    <div class="flex items-center gap-6 flex-wrap">
-                        <div class="flex items-center gap-2">
-                            <div class="flex -space-x-2">
-                                <div class="w-8 h-8 rounded-full bg-rose-200 border-2 border-white flex items-center justify-center text-xs font-bold text-anthracite">A</div>
-                                <div class="w-8 h-8 rounded-full bg-rose-300 border-2 border-white flex items-center justify-center text-xs font-bold text-anthracite">M</div>
-                                <div class="w-8 h-8 rounded-full bg-gold/30 border-2 border-white flex items-center justify-center text-xs font-bold text-anthracite">S</div>
-                            </div>
-                            <span class="text-sm text-anthracite/70">500+ Mutlu Müşteri</span>
-                        </div>
-                        <div class="flex items-center gap-1 star-rating text-sm">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span class="text-anthracite/70 ml-1">5.0 Google</span>
-                        </div>
                     </div>
                 </div>
-                
-                <!-- Hero Image -->
                 <div class="relative">
-                    <div class="relative">
-                        <div class="absolute -inset-4 bg-gradient-to-br from-rose-200 to-gold/20 rounded-3xl blur-2xl opacity-60"></div>
-                        <div class="relative hero-img rounded-3xl overflow-hidden shadow-2xl">
-                            <img src="https://www.designarena.ai/u/79220549-ea47-4052-ba72-d23e3d3f3c81" alt="Aynur Güzellik Salonu - İzmir Güzelyalı" class="w-full h-[400px] md:h-[500px] lg:h-[550px] object-cover">
-                        </div>
-                        <!-- Floating Badge -->
-                        <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3 pulse-ring">
-                            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center">
-                                <i class="fas fa-award text-white text-xl"></i>
-                            </div>
-                            <div>
-                                <div class="font-serif font-bold text-anthracite text-sm">Uzman Kadro</div>
-                                <div class="text-xs text-anthracite/60">Sertifikalı Estetisyenler</div>
-                            </div>
-                        </div>
-                        <!-- Floating Badge 2 -->
-                        <div class="absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl p-4 hidden md:block">
-                            <div class="flex items-center gap-2">
-                                <i class="fas fa-shield-alt text-gold text-xl"></i>
-                                <div>
-                                    <div class="font-bold text-anthracite text-sm">%100 Hijyen</div>
-                                    <div class="text-xs text-anthracite/60">Steril Ortam</div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="w-full h-[420px] sm:h-[500px] rounded-3xl bg-slate-200 overflow-hidden shadow-2xl relative border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=80" alt="Güzellik Salonu" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- HAKKIMIZDA SECTION -->
-    <section id="hakkimizda" class="py-20 md:py-28 bg-white relative">
+    <!-- Services Section -->
+    <section id="hizmetler" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-gold font-medium text-sm uppercase tracking-wider">Hakkımızda</span>
-                <h2 class="font-serif text-3xl md:text-5xl font-bold text-anthracite mt-3 mb-4">Güzelliğinize Değer Katan<br><span class="gold-text italic">Profesyonel Yaklaşım</span></h2>
-                <div class="section-divider mt-6"></div>
-                <p class="mt-6 text-anthracite/70 max-w-2xl mx-auto text-lg leading-relaxed">
-                    Aynur Güzellik Salonu olarak, İzmir Güzelyalı'nın kalbinde hijyen standartlarından ödün vermeden, kişiye özel bakım protokolleri ile hizmet veriyoruz.
-                </p>
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <span class="text-gold font-semibold text-xs tracking-widest uppercase">Özel Hizmetlerimiz</span>
+                <h2 class="text-3xl sm:text-4xl font-serif text-anthracite">Sizin İçin Sunduklarımız</h2>
+                <div class="w-16 h-0.5 bg-gold mx-auto"></div>
             </div>
-            
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="card-hover bg-cream rounded-2xl p-8 border border-rose-100 text-center">
-                    <div class="w-16 h-16 mx-auto rounded-full gold-gradient flex items-center justify-center mb-5">
-                        <i class="fas fa-user-md text-white text-2xl"></i>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl transition duration-300">
+                    <div class="w-12 h-12 bg-gold/10 text-gold rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-scissors"></i>
                     </div>
-                    <h3 class="font-serif text-xl font-bold text-anthracite mb-3">Uzman Estetisyen Kadrosu</h3>
-                    <p class="text-anthracite/60 text-sm leading-relaxed">Sertifikalı ve deneyimli ekibimiz ile en güncel teknikleri uyguluyoruz.</p>
+                    <h3 class="text-xl font-serif font-bold text-anthracite mb-3">Saç Tasarım & Bakım</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Profesyonel kesim, renklendirme, ombre, sombre ve keratin bakım uygulamaları.
+                    </p>
                 </div>
-                <div class="card-hover bg-cream rounded-2xl p-8 border border-rose-100 text-center">
-                    <div class="w-16 h-16 mx-auto rounded-full gold-gradient flex items-center justify-center mb-5">
-                        <i class="fas fa-shield-virus text-white text-2xl"></i>
+
+                <!-- Service 2 -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl transition duration-300">
+                    <div class="w-12 h-12 bg-gold/10 text-gold rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-hand-sparkles"></i>
                     </div>
-                    <h3 class="font-serif text-xl font-bold text-anthracite mb-3">%100 Steril & Hijyenik</h3>
-                    <p class="text-anthracite/60 text-sm leading-relaxed">Tek kullanımlık malzemeler ve sterilizasyon prosedürleri ile güvenli hizmet.</p>
+                    <h3 class="text-xl font-serif font-bold text-anthracite mb-3">Protez Tırnak & Nail Art</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Kalıcı oje, protez tırnak, medikal manikür ve trend nail art tasarımları.
+                    </p>
                 </div>
-                <div class="card-hover bg-cream rounded-2xl p-8 border border-rose-100 text-center">
-                    <div class="w-16 h-16 mx-auto rounded-full gold-gradient flex items-center justify-center mb-5">
-                        <i class="fas fa-heart text-white text-2xl"></i>
+
+                <!-- Service 3 -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl transition duration-300">
+                    <div class="w-12 h-12 bg-gold/10 text-gold rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-sparkles"></i>
                     </div>
-                    <h3 class="font-serif text-xl font-bold text-anthracite mb-3">Yüksek Müşteri Memnuniyeti</h3>
-                    <p class="text-anthracite/60 text-sm leading-relaxed">500+ mutlu müşterimiz ve 5 yıldızlı Google değerlendirmeleri.</p>
-                </div>
-                <div class="card-hover bg-cream rounded-2xl p-8 border border-rose-100 text-center">
-                    <div class="w-16 h-16 mx-auto rounded-full gold-gradient flex items-center justify-center mb-5">
-                        <i class="fas fa-clipboard-list text-white text-2xl"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-bold text-anthracite mb-3">Kişiye Özel Protokoller</h3>
-                    <p class="text-anthracite/60 text-sm leading-relaxed">Cilt tipinize ve ihtiyaçlarınıza özel hazırlanan bakım planları.</p>
+                    <h3 class="text-xl font-serif font-bold text-anthracite mb-3">Cilt Bakımı & Astar</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Cildinizin ihtiyacına özel medikal cilt bakımı, hydrafacial ve anti-aging terapiler.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- HİZMETLER SECTION -->
-    <section id="hizmetler" class="py-20 md:py-28 bg-gradient-to-b from-cream to-rose-50 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-gold font-medium text-sm uppercase tracking-wider">Hizmetlerimiz</span>
-                <h2 class="font-serif text-3xl md:text-5xl font-bold text-anthracite mt-3 mb-4">Profesyonel <span class="gold-text italic">Bakım</span> Çözümleri</h2>
-                <div class="section-divider mt-6"></div>
-                <p class="mt-6 text-anthracite/70 max-w-2xl mx-auto text-lg leading-relaxed">
-                    En son teknoloji cihazlar ve premium ürünlerle sunduğumuz hizmetlerimizle tanışın.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service Card 1 -->
-                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-rose-100">
-                    <div class="relative h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=400&fit=crop" alt="Profesyonel Cilt Bakımı" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-semibold text-gold-dark">
-                            <i class="fas fa-star text-gold mr-1"></i> En Popüler
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center mb-4">
-                            <i class="fas fa-spa text-gold text-xl"></i>
-                        </div>
-                        <h3 class="font-serif text-xl font-bold text-anthracite mb-3">Profesyonel & Medikal Cilt Bakımı</h3>
-                        <p class="text-anthracite/60 text-sm leading-relaxed mb-5">Derinlemesine cilt temizliği, nem ve leke bakımları, anti-aging yenileme protokolleri ile cildinize hak ettiği özeni sunuyoruz.</p>
-                        <a href="#randevu-al" class="inline-flex items-center gap-2 text-gold-dark font-semibold text-sm hover:text-gold transition group">
-                            Randevu Oluştur
-                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
+    <!-- Appointment Form Section -->
+    <section id="randevu" class="py-20 bg-gradient-to-b from-slate-50 to-softpink relative">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            <div class="bg-white rounded-3xl shadow-xl p-8 sm:p-12 border border-rose-100">
+                <div class="text-center mb-10 space-y-2">
+                    <span class="text-gold font-semibold text-xs tracking-widest uppercase">Hızlı Ve Kolay</span>
+                    <h2 class="text-3xl font-serif text-anthracite">Randevu Oluşturun</h2>
+                    <p class="text-slate-500 text-sm">Bilgilerinizi girin, randevu talebinizi anında WhatsApp üzerinden iletin.</p>
                 </div>
-                
-                <!-- Service Card 2 -->
-                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-rose-100">
-                    <div class="relative h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&h=400&fit=crop" alt="Epilasyon & Bölgesel İncelme" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                    </div>
-                    <div class="p-6">
-                        <div class="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center mb-4">
-                            <i class="fas fa-bolt text-gold text-xl"></i>
-                        </div>
-                        <h3 class="font-serif text-xl font-bold text-anthracite mb-3">Epilasyon & Bölgesel İncelme</h3>
-                        <p class="text-anthracite/60 text-sm leading-relaxed mb-5">Konforlu, son teknoloji cihazlarla epilasyon ve vücut şekillendirme çözümleri ile istediğiniz görünüme kavuşun.</p>
-                        <a href="#randevu-al" class="inline-flex items-center gap-2 text-gold-dark font-semibold text-sm hover:text-gold transition group">
-                            Randevu Oluştur
-                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Service Card 3 -->
-                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-rose-100">
-                    <div class="relative h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=400&fit=crop" alt="Kaş, Kirpik & Kalıcı Makyaj" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                    </div>
-                    <div class="p-6">
-                        <div class="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center mb-4">
-                            <i class="fas fa-eye text-gold text-xl"></i>
-                        </div>
-                        <h3 class="font-serif text-xl font-bold text-anthracite mb-3">Kaş, Kirpik & Kalıcı Makyaj</h3>
-                        <p class="text-anthracite/60 text-sm leading-relaxed mb-5">İpek kirpik, kaş laminasyonu ve doğal dudak renklendirme uygulamaları ile her gün bakımlı görünün.</p>
-                        <a href="#randevu-al" class="inline-flex items-center gap-2 text-gold-dark font-semibold text-sm hover:text-gold transition group">
-                            Randevu Oluştur
-                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- WHATSAPP RANDEVU FORMU SECTION -->
-    <section id="randevu-al" class="py-20 md:py-28 bg-white relative">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="text-gold font-medium text-sm uppercase tracking-wider">Hızlı & Kolay</span>
-                <h2 class="font-serif text-3xl md:text-5xl font-bold text-anthracite mt-3 mb-4">Online <span class="gold-text italic">Randevu Talebi</span></h2>
-                <div class="section-divider mt-6"></div>
-                <p class="mt-6 text-anthracite/70 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
-                    Aşağıdaki formu doldurarak tarih ve saatinizi belirleyin. Talebiniz anında WhatsApp hattımıza iletilecek ve randevunuz onaylanacaktır.
-                </p>
-            </div>
+                <!-- Dynamic Warning Alert -->
+                <div id="saat-uyari-kutusu" class="hidden mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm flex items-center space-x-3">
+                    <i class="fa-solid fa-circle-exclamation text-lg flex-shrink-0"></i>
+                    <span id="saat-uyari-metni">Seçilen saat doludur. Lütfen farklı bir saat seçiniz.</span>
+                </div>
 
-            <div class="bg-cream rounded-3xl p-6 sm:p-10 shadow-xl border border-rose-100 max-w-2xl mx-auto">
-                <form id="whatsappForm" class="space-y-5">
-                    <!-- Ad Soyad -->
+                <form id="whatsappForm" class="space-y-6">
                     <div>
                         <label class="block text-xs font-bold text-anthracite uppercase tracking-wider mb-2">Adınız Soyadınız</label>
-                        <input type="text" id="rnAdSoyad" placeholder="Örn: Ayşe Yılmaz" required 
-                               class="w-full px-4 py-3.5 rounded-xl border border-rose-200 focus:outline-none focus:border-gold bg-white text-sm transition">
+                        <input type="text" id="rnAdSoyad" required placeholder="Örn: Ayşe Yılmaz" class="w-full px-4 py-3.5 rounded-xl border border-rose-200 focus:outline-none focus:border-gold text-sm transition">
                     </div>
 
-                    <!-- Hizmet Seçimi -->
                     <div>
-                        <label class="block text-xs font-bold text-anthracite uppercase tracking-wider mb-2">İstediğiniz Hizmet</label>
+                        <label class="block text-xs font-bold text-anthracite uppercase tracking-wider mb-2">Hizmet Seçimi</label>
                         <select id="rnHizmet" required class="w-full px-4 py-3.5 rounded-xl border border-rose-200 focus:outline-none focus:border-gold bg-white text-sm transition">
                             <option value="">Hizmet Seçiniz...</option>
+                            <option value="Saç Kesim & Bakım">Saç Kesim & Bakım</option>
+                            <option value="Renklendirme & Ombre">Renklendirme & Ombre</option>
+                            <option value="Protez Tırnak / Nail Art">Protez Tırnak / Nail Art</option>
                             <option value="Medikal Cilt Bakımı">Medikal Cilt Bakımı</option>
-                            <option value="Lazer Epilasyon">Lazer Epilasyon</option>
-                            <option value="Protez Tırnak & Nail Art">Protez Tırnak & Nail Art</option>
-                            <option value="İpek Kirpik & Laminasyon">İpek Kirpik & Laminasyon</option>
-                            <option value="Kalıcı Makyaj">Kalıcı Makyaj</option>
-                            <option value="Bölgesel İncelme">Bölgesel İncelme</option>
-                            <option value="Diğer / Danışmanlık">Diğer / Danışmanlık</option>
+                            <option value="Diğer">Diğer</option>
                         </select>
                     </div>
 
-                    <!-- Tarih ve Saat -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="grid sm:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-xs font-bold text-anthracite uppercase tracking-wider mb-2">Tercih Edilen Tarih</label>
-                            <input type="date" id="rnTarih" required 
-                                   class="w-full px-4 py-3.5 rounded-xl border border-rose-200 focus:outline-none focus:border-gold bg-white text-sm transition">
+                            <input type="date" id="rnTarih" required class="w-full px-4 py-3.5 rounded-xl border border-rose-200 focus:outline-none focus:border-gold bg-white text-sm transition">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-anthracite uppercase tracking-wider mb-2">Tercih Edilen Saat</label>
@@ -509,296 +190,59 @@
                                 <option value="">Saat Seçiniz...</option>
                                 <option value="09:00">09:00</option>
                                 <option value="10:30">10:30</option>
-                                <option value="12:00">12:00</option>
+                                <!-- Dolu Saatler (Disabled) -->
+                                <option value="12:00" disabled class="bg-red-50 text-red-400 font-semibold">12:00 (DOLU)</option>
                                 <option value="13:30">13:30</option>
-                                <option value="15:00">15:00</option>
+                                <option value="15:00" disabled class="bg-red-50 text-red-400 font-semibold">15:00 (DOLU)</option>
                                 <option value="16:30">16:30</option>
                                 <option value="18:00">18:00</option>
                             </select>
                         </div>
                     </div>
 
-                    <!-- Submit Button -->
-                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 text-base shadow-lg shadow-emerald-600/20 mt-4">
-                        <i class="fab fa-whatsapp text-2xl"></i>
-                        <span>WhatsApp ile Randevu Oluştur</span>
+                    <button type="submit" class="w-full bg-gold hover:bg-amber-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-gold/20 transition flex items-center justify-center space-x-2 text-base">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        <span>Randevu Talebini Gönder</span>
                     </button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- INSTAGRAM SECTION -->
-    <section id="instagram" class="py-20 md:py-28 bg-cream relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-gold font-medium text-sm uppercase tracking-wider">Sosyal Medya</span>
-                <h2 class="font-serif text-3xl md:text-5xl font-bold text-anthracite mt-3 mb-4">Uygulamalarımızı <span class="gold-text italic">Instagram'da</span> Keşfedin</h2>
-                <div class="section-divider mt-6"></div>
-                <p class="mt-6 text-anthracite/70 max-w-2xl mx-auto text-lg leading-relaxed">
-                    @aynurguzelliksalonu hesabımızı takip ederek en güncel salon ortamımızı ve değişimleri inceleyebilirsiniz.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="ig-card rounded-2xl overflow-hidden aspect-square group">
-                    <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&h=400&fit=crop" alt="Cilt Bakımı Uygulaması" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="ig-overlay">
-                        <i class="fab fa-instagram text-white text-4xl"></i>
-                    </div>
-                </a>
-                <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="ig-card rounded-2xl overflow-hidden aspect-square group">
-                    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=400&fit=crop" alt="Saç Bakımı" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="ig-overlay">
-                        <i class="fab fa-instagram text-white text-4xl"></i>
-                    </div>
-                </a>
-                <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="ig-card rounded-2xl overflow-hidden aspect-square group">
-                    <img src="https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=400&h=400&fit=crop" alt="Kaş Tasarımı" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="ig-overlay">
-                        <i class="fab fa-instagram text-white text-4xl"></i>
-                    </div>
-                </a>
-                <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="ig-card rounded-2xl overflow-hidden aspect-square group">
-                    <img src="https://images.unsplash.com/photo-1522337094846-8a818192de1f?w=400&h=400&fit=crop" alt="Güzellik Salonu" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="ig-overlay">
-                        <i class="fab fa-instagram text-white text-4xl"></i>
-                    </div>
-                </a>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="btn-shimmer instagram-gradient text-white px-10 py-4 rounded-full font-semibold inline-flex items-center gap-3 hover:shadow-xl hover:shadow-pink-500/30 transition-all text-lg">
-                    <i class="fab fa-instagram text-2xl"></i>
-                    Instagram'da Takip Et
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- MÜŞTERİ YORUMLARI SECTION -->
-    <section id="yorumlar" class="py-20 md:py-28 bg-gradient-to-b from-rose-50 to-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-gold font-medium text-sm uppercase tracking-wider">Müşteri Yorumları</span>
-                <h2 class="font-serif text-3xl md:text-5xl font-bold text-anthracite mt-3 mb-4">Müşterilerimiz <span class="gold-text italic">Ne Diyor?</span></h2>
-                <div class="section-divider mt-6"></div>
-                
-                <!-- Google Badge -->
-                <div class="mt-8 inline-flex items-center gap-3 bg-white px-6 py-3 rounded-full shadow-sm border border-rose-100">
-                    <i class="fab fa-google text-xl text-red-500"></i>
-                    <div class="flex items-center gap-1 star-rating text-sm">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <span class="font-bold text-anthracite text-sm">5.0 / 5.0 Değerlendirme</span>
-                </div>
-            </div>
-
-            <!-- Review Cards -->
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-3xl border border-rose-100 shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-1 star-rating text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-anthracite/70 text-sm italic leading-relaxed mb-6">
-                            "Güzelyalı'da gidebileceğiniz en hijyenik ve ilgili salon. Cilt bakımı sonrası cildimdeki değişimi hemen fark ettim. Aynur hanım ve ekibine sonsuz teşekkürler!"
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-3 pt-4 border-t border-rose-50">
-                        <div class="w-10 h-10 rounded-full bg-rose-200 flex items-center justify-center font-serif font-bold text-anthracite">Z</div>
-                        <div>
-                            <div class="font-bold text-anthracite text-sm">Zeynep Y.</div>
-                            <div class="text-xs text-anthracite/50">Google Yorumu</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl border border-rose-100 shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-1 star-rating text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-anthracite/70 text-sm italic leading-relaxed mb-6">
-                            "Randevular tam zamanında gerçekleşiyor, hiç beklemiyorsunuz. Güler yüzlü hizmet ve profesyonel yaklaşım harika. Kesinlikle tavsiye ederim."
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-3 pt-4 border-t border-rose-50">
-                        <div class="w-10 h-10 rounded-full bg-rose-300 flex items-center justify-center font-serif font-bold text-anthracite">E</div>
-                        <div>
-                            <div class="font-bold text-anthracite text-sm">Elif K.</div>
-                            <div class="text-xs text-anthracite/50">Google Yorumu</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl border border-rose-100 shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-1 star-rating text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-anthracite/70 text-sm italic leading-relaxed mb-6">
-                            "Kaş laminasyonu ve kirpik bakımı yaptırdım, sonuç mükemmel oldu. Kullanılan ürünlerin kalitesi ve ortamın temizliği içimi çok rahatlattı."
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-3 pt-4 border-t border-rose-50">
-                        <div class="w-10 h-10 rounded-full bg-gold/30 flex items-center justify-center font-serif font-bold text-anthracite">S</div>
-                        <div>
-                            <div class="font-bold text-anthracite text-sm">Selin B.</div>
-                            <div class="text-xs text-anthracite/50">Google Yorumu</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- İLETİŞİM SECTION -->
-    <section id="iletisim" class="py-20 md:py-28 bg-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <span class="text-gold font-medium text-sm uppercase tracking-wider">İletişim & Ulaşım</span>
-                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-anthracite mt-3 mb-6">Bizimle İletişime Geçin,<br><span class="gold-text italic">Yeriniz Ayırtın</span></h2>
-                    <p class="text-anthracite/70 leading-relaxed mb-8">
-                        Sorularınız ve bilgi almak istediğiniz konular için WhatsApp hattımızdan bize ulaşabilir veya hızlıca online randevunuzu oluşturabilirsiniz.
-                    </p>
-
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center flex-shrink-0 text-gold-dark">
-                                <i class="fas fa-map-marker-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-serif font-bold text-anthracite text-lg">Adres</h4>
-                                <p class="text-anthracite/70 text-sm mt-1">Güzelyalı, Konak / İzmir</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center flex-shrink-0 text-gold-dark">
-                                <i class="fas fa-phone-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-serif font-bold text-anthracite text-lg">Telefon / WhatsApp</h4>
-                                <p class="text-anthracite/70 text-sm mt-1">+90 507 924 31 23</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center flex-shrink-0 text-gold-dark">
-                                <i class="fas fa-clock text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-serif font-bold text-anthracite text-lg">Çalışma Saatleri</h4>
-                                <p class="text-anthracite/70 text-sm mt-1">Pazartesi - Cumartesi: 09:00 - 19:30</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-10 flex flex-wrap gap-4">
-                        <a href="#randevu-al" class="btn-shimmer gold-gradient text-white px-8 py-4 rounded-full font-semibold flex items-center gap-3 shadow-lg hover:shadow-gold/30 transition-all">
-                            <i class="far fa-calendar-alt text-xl"></i> Randevu Oluştur
-                        </a>
-                        <a href="https://wa.me/905079243123?text=Merhaba,%20bilgi%20almak%20istiyorum." target="_blank" class="bg-emerald-600 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-3 hover:bg-emerald-700 transition-all">
-                            <i class="fab fa-whatsapp text-xl"></i> WhatsApp Mesaj
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Map Frame -->
-                <div class="rounded-3xl overflow-hidden shadow-2xl border border-rose-100 h-[400px] lg:h-[500px] relative">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3125.7828032731175!2d27.08639!3d38.40053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDI0JzAxLjkiTiAyN8KwMDUnMTEuMCJF!5e0!3m2!1str!2str!4v1620000000000!5m2!1str!2str" class="w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-anthracite text-white py-12 border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center">
-                        <span class="text-white font-serif font-bold text-lg">A</span>
-                    </div>
-                    <div>
-                        <div class="font-serif font-bold text-lg">Aynur Güzellik Salonu</div>
-                        <div class="text-xs text-white/50">İzmir Güzelyalı Estetik & Bakım Merkezi</div>
-                    </div>
-                </div>
-
-                <div class="flex items-center gap-6 text-xl">
-                    <a href="https://www.instagram.com/aynurguzelliksalonu/" target="_blank" class="hover:text-gold transition"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/905079243123" target="_blank" class="hover:text-gold transition"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://maps.app.goo.gl/mm4JY5uAFTTg3TZL8" target="_blank" class="hover:text-gold transition"><i class="fas fa-map-marker-alt"></i></a>
-                </div>
-
-                <div class="text-xs text-white/50">
-                    &copy; 2026 Aynur Güzellik Salonu. Tüm hakları saklıdır.
-                </div>
-            </div>
+    <!-- Footer -->
+    <footer class="bg-anthracite text-white/70 py-12 border-t border-white/10 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <p class="font-serif text-lg text-white font-semibold">BG NATURA KUAFÖR & GÜZELLİK SALONU</p>
+            <p>© 2026 BG Natura. Tüm Hakları Saklıdır.</p>
         </div>
     </footer>
 
-    <!-- MOBILE STICKY BOTTOM BAR -->
-    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-rose-100 p-3 z-40 flex gap-2 shadow-2xl">
-        <a href="#randevu-al" class="flex-1 gold-gradient text-white py-2.5 rounded-full text-center font-semibold text-xs flex items-center justify-center gap-1.5 shadow-md">
-            <i class="far fa-calendar-alt text-base"></i> Randevu Al
-        </a>
-        <a href="https://wa.me/905079243123?text=Merhaba,%20bilgi%20almak%20istiyorum." target="_blank" class="flex-1 bg-emerald-600 text-white py-2.5 rounded-full text-center font-semibold text-xs flex items-center justify-center gap-1.5">
-            <i class="fab fa-whatsapp text-base"></i> WhatsApp
-        </a>
-    </div>
-
-    <!-- JS SCRIPTS -->
+    <!-- Form Submit & Validation Script -->
     <script>
-        // Mobil Menü
-        const menuBtn = document.getElementById('menuBtn');
-        const closeMenu = document.getElementById('closeMenu');
-        const mobileNav = document.getElementById('mobileNav');
-        const overlay = document.getElementById('overlay');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        function openNav() {
-            mobileNav.classList.add('open');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeNav() {
-            mobileNav.classList.remove('open');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        menuBtn.addEventListener('click', openNav);
-        closeMenu.addEventListener('click', closeNav);
-        overlay.addEventListener('click', closeNav);
-
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', closeNav);
-        });
-
-        // WhatsApp Randevu Formu Mantığı
         document.getElementById('whatsappForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            const telefon = "905079243123";
+            const saatSelect = document.getElementById('rnSaat');
+            const secilenOption = saatSelect.options[saatSelect.selectedIndex];
+            const uyariKutusu = document.getElementById('saat-uyari-kutusu');
 
+            // Dolu saat seçildiyse engelle ve uyarı ver
+            if (secilenOption.disabled) {
+                uyariKutusu.classList.remove('hidden');
+                return;
+            } else {
+                uyariKutusu.classList.add('hidden');
+            }
+
+            const telefon = "905079243123";
             const adSoyad = document.getElementById('rnAdSoyad').value;
             const hizmet = document.getElementById('rnHizmet').value;
             const tarih = document.getElementById('rnTarih').value;
-            const saat = document.getElementById('rnSaat').value;
+            const saat = saatSelect.value;
 
-            const mesaj = `Merhaba Aynur Güzellik Salonu,%0A%0AWeb siteniz üzerinden randevu talebinde bulunmak istiyorum:%0A%0A👤 *Ad Soyad:* ${encodeURIComponent(adSoyad)}%0A💅 *Hizmet:* ${encodeURIComponent(hizmet)}%0A📅 *Tarih:* ${encodeURIComponent(tarih)}%0A⏰ *Saat:* ${encodeURIComponent(saat)}%0A%0AUygunluk durumunu teyit edebilir misiniz?`;
+            const mesaj = `Merhaba BG Natura Kuaför ve Güzellik Salonu,%0A%0AWeb siteniz üzerinden randevu talebinde bulunmak istiyorum:%0A%0A👤 *Ad Soyad:* ${encodeURIComponent(adSoyad)}%0A💅 *Hizmet:* ${encodeURIComponent(hizmet)}%0A📅 *Tarih:* ${encodeURIComponent(tarih)}%0A⏰ *Saat:* ${encodeURIComponent(saat)}%0A%0AUygunluk durumunu teyit edebilir misiniz?`;
 
             const whatsappURL = `https://wa.me/${telefon}?text=${mesaj}`;
-
             window.open(whatsappURL, '_blank');
         });
     </script>
